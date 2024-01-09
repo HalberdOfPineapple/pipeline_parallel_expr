@@ -1,8 +1,8 @@
 import torch
 from torch import nn
-import stream_utils
 
-from checkpointing import CheckPointingCLS, Join
+from . import stream_utils
+from .checkpointing import CheckPointingCLS, Join
 from collections import OrderedDict
 from typing import List, Tuple, Callable, Any, Dict, Iterable
 

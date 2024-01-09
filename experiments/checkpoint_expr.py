@@ -1,6 +1,6 @@
 import torch
-import stream_utils
-from checkpointing import CheckPointingV0, CheckPointingCLS, Join
+import MyGPipe.stream_utils as stream_utils
+from MyGPipe.checkpointing import CheckPointingV0, CheckPointingCLS, Join
 
 # --------------------------------------------------------------------
 def func_1(a: torch.Tensor, b: torch.Tensor):

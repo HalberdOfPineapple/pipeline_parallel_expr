@@ -9,7 +9,7 @@ from torchvision.datasets import MNIST
 from torchvision import transforms
 
 from torchgpipe import GPipe as tGPipe
-from GPipe import GPipe as SelfGPipe
+from MyGPipe import GPipe as SelfGPipe
 
 curr_dir = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(curr_dir, 'data')

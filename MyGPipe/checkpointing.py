@@ -1,5 +1,4 @@
 import torch
-import stream_utils
 from typing import Callable
 
 # ------------------- Checkpointing Base Version ------------------------

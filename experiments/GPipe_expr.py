@@ -1,5 +1,5 @@
 import torch
-from GPipe import GPipe
+from MyGPipe import GPipe
 
 def checkpoint_multi_stream_v1():
     print('=' * 50)
