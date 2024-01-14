@@ -1,3 +1,10 @@
-experiments/data/*
-experiments/ckpt/*
-experiments/trace/*
+experiments/data/
+experiments/ckpt/
+experiments/trace/
+benchmarks/data/
+benchmarks/logs/
+benchmarks/speed_logs/
+benchmarks/__pycache__/
+ddp_exprs/
+slurm_logs/
+MyGPipe/__pycache__/

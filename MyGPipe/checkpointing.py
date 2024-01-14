@@ -1,5 +1,22 @@
 import torch
-from typing import Callable
+from typing import Callable, Tuple, Dict
+from .microbatch import Batch
+from .stream_utils  import use_stream, get_default_stream
+
+aux_tensor_map: Dict[Tuple[torch.device, bool], torch.Tensor] = {}
+
+
+def get_aux_tensor(device: torch.device, *, requires_grad: bool) -> torch.Tensor:
+    key = (device, requires_grad)
+    try:
+        aux_tensor = aux_tensor_map[key]
+    except KeyError:
+        with use_stream(get_default_stream(device)):
+            aux_tensor = torch.empty(0, device=device, requires_grad=requires_grad)
+        aux_tensor_map[key] = aux_tensor
+
+    return aux_tensor
+
 
 # ------------------- Checkpointing Base Version ------------------------
 class CheckPointingV0(torch.autograd.Function):
@@ -127,3 +144,158 @@ class Join(torch.autograd.Function):
     @staticmethod
     def backward(ctx, grads):
         return grads, None
+
+# def join(aux_tensor, input_tensors):
+#     if isinstance(input_tensors, (list, tuple)):
+#         return Join.apply(aux_tensor, *input_tensors)
+#     else:
+#         return Join.apply(aux_tensor, input_tensors)[0]
+
+# =============================================================================
+class CheckPointingCLSv2():
+    def __init__(self, stream, func, batch: Batch):
+        self.stream: torch.cuda.Stream = stream
+        self.func: Callable = func
+        self.batch = batch
+
+        #  Save shared parameters for checkpointing and recomputation, including rng_state, computation graphs etc.
+        self.shared_parameters = {}
+    
+    def checkpoint(self) -> Batch:
+        input_atomic = self.batch.atomic
+        input = tuple(self.batch)
+
+        aux_tensor = get_aux_tensor(self.batch[0].device, requires_grad=True)
+        with torch.cuda.stream(self.stream):
+            # aux_tensor = torch.tensor(0.0, device=self.batch[0].device, requires_grad=True)
+            output = CheckpointV2.apply(
+                self.func, self.shared_parameters, aux_tensor, input_atomic, *input)
+            return Batch(output)
+
+    def recompute(self, batch: Batch) -> torch.Tensor:
+        input_atomic = self.batch.atomic
+        input = tuple(self.batch)
+
+        batch[0], aux_tensor = fork(batch[0])
+        with torch.cuda.stream(self.stream):
+            aux_tensor = RecomputeV2.apply(aux_tensor,
+                self.func, self.shared_parameters, batch, input_atomic, *input)
+            batch[0] = join(batch[0], aux_tensor)
+            # return aux_tensor
+
+class CheckpointV2(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, func: Callable, shared_parameters: dict, aux_tensor: torch.Tensor, input_atomic:bool, *tensors):
+        ctx.func = func
+        ctx.shared_parameters = shared_parameters
+        ctx.save_for_backward(*tensors) # tuple of tensors
+
+        # Saves rng_state for restoring random settings when doing recomputation in backward pass
+        ctx.cpu_rng_state = torch.get_rng_state()
+        ctx.gpu_rng_state = torch.cuda.get_rng_state(tensors[0].device) if tensors[0].is_cuda else None
+        ctx.shared_parameters['rng_state'] = (ctx.cpu_rng_state, ctx.gpu_rng_state)
+
+        with torch.no_grad():
+            output = func(tensors[0] if input_atomic else tensors)
+        return output
+
+    @staticmethod
+    def backward(ctx, *grads):
+        recomputed_outputs, tensors_require_grads = ctx.shared_parameters['recomputed']
+        # print("[CheckpointV2.backward] Recomputed results loaded.")
+
+        if isinstance(recomputed_outputs, tuple):
+            tensors = recomputed_outputs
+        else:
+            tensors = (recomputed_outputs,)
+        if any(y.requires_grad for y in tensors):
+            torch.autograd.backward(tensors, grad_tensors=grads)
+        
+        grad_output = [tensor.grad for tensor in tensors_require_grads]
+        return (None, None, None, None,) + tuple(grad_output)
+
+
+class RecomputeV2(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, aux_tensor: torch.Tensor, func:Callable, shared_parameters, data:Batch, input_atomic: bool, *tensors):
+        ctx.func = func
+        ctx.shared_parameters = shared_parameters
+
+        ctx.input_atomic = input_atomic
+        ctx.save_for_backward(*tensors)
+
+        return aux_tensor
+
+    @staticmethod
+    def backward(ctx, *grads):
+        """Specifically responsible for the recomputation during backward"""
+        # tensors saved by ctx.save_for_backward(*tensors) in forward pass
+        saved_tensors = ctx.saved_tensors
+        tensors_require_grads = tuple(tensor.detach().requires_grad_(tensor.requires_grad) for tensor in saved_tensors)
+
+        with torch.random.fork_rng(devices=[saved_tensors[0].device] if saved_tensors[0].is_cuda else None):
+            cpu_rng_state, gpu_rng_state = ctx.shared_parameters['rng_state']
+            torch.set_rng_state(cpu_rng_state)
+            if gpu_rng_state is not None:
+                torch.cuda.set_rng_state(gpu_rng_state)
+            
+            with torch.enable_grad():
+                recomputed_outputs = ctx.func(
+                    tensors_require_grads[0] if ctx.input_atomic else tensors_require_grads)
+        
+        ctx.shared_parameters['recomputed'] = (recomputed_outputs, tensors_require_grads)
+        # print("[RecomputeV2.backward] Recomputed results saved.")
+
+        # Recompute only needs to perform the recomputation to build the computation graph
+        # but it does not need to have any gradients itself
+        return (None, None, None, None, None) + tuple([None for _ in tensors_require_grads])
+
+# class JoinV2(torch.autograd.Function):
+#     @staticmethod
+#     def forward(ctx, aux_tensor: torch.Tensor, *tensors):
+#         return tuple(tensor.detach() for tensor in tensors)
+    
+#     @staticmethod
+#     def backward(ctx, grads):
+#         return None, grads, 
+
+# def join(aux_tensor: torch.Tensor, batch: Batch):
+#     batch[:] = JoinV2.apply(aux_tensor, *batch)
+#     return batch
+    
+
+def join(input: torch.Tensor, aux_tensor: torch.Tensor) -> torch.Tensor:
+    """Merges two autograd lanes."""
+    if torch.is_grad_enabled() and (input.requires_grad or aux_tensor.requires_grad):
+        input = JoinV2.apply(input, aux_tensor)
+
+    return input
+
+
+class JoinV2(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx: 'Join', input: torch.Tensor, aux_tensor: torch.Tensor) -> torch.Tensor:  # type: ignore
+        return input.detach()
+
+    @staticmethod
+    def backward(ctx: 'Join', grad_input: torch.Tensor) -> Tuple[torch.Tensor, None]:  # type: ignore
+        return grad_input, None
+
+class Fork(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx: 'Fork', input: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:  # type: ignore
+        aux_tensor = get_aux_tensor(input.device, requires_grad=False)
+        return input.detach(), aux_tensor.detach()
+
+    @staticmethod
+    def backward(ctx: 'Fork', grad_input: torch.Tensor, grad_grad: torch.Tensor) -> torch.Tensor:  # type: ignore
+        return grad_input
+
+def fork(input: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    """Branches out from an autograd lane of the given tensor."""
+    if torch.is_grad_enabled() and input.requires_grad:
+        input, aux_tensor = Fork.apply(input)
+    else:
+        aux_tensor = get_aux_tensor(input.device, requires_grad=False)
+
+    return input, aux_tensor

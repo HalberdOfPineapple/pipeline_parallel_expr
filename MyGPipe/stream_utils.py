@@ -1,6 +1,6 @@
 import torch
 from contextlib import contextmanager
-
+from .microbatch import Batch
 
 class CPUStream():
     device = 'cpu'
@@ -68,6 +68,7 @@ class StreamCopy(torch.autograd.Function):
 
         outputs = []
         next_cal_stream = get_current_stream(next_copy_stream.device)
+
         with use_stream(curr_copy_stream), use_stream(next_copy_stream):
             for tensor in tensors:
                 tensor_copied = tensor.to(next_copy_stream.device)
@@ -92,18 +93,22 @@ class StreamCopy(torch.autograd.Function):
                 grad_copied = grad.to(curr_copy_stream.device)
                 grad_outputs.append(grad_copied)
 
-                record_stream(grad, curr_copy_stream)
+                record_stream(grad, next_copy_stream)
                 record_stream(grad_copied, curr_cal_stream)
 
         return (None, None) + tuple(grad_outputs)
         
-def stream_copy(curr_copy_stream: torch.cuda.Stream, next_copy_stream: torch.cuda.Stream, data):
-    if isinstance(data, (list, tuple)):
-        # outputs will be a tuple as well
-        return StreamCopy.apply(curr_copy_stream, next_copy_stream, *data)
-    else:
-        # outputs should be a single tensor
-        return StreamCopy.apply(curr_copy_stream, next_copy_stream, data)[0]
+# def stream_copy(curr_copy_stream: torch.cuda.Stream, next_copy_stream: torch.cuda.Stream, data):
+#     if isinstance(data, (list, tuple)):
+#         # outputs will be a tuple as well
+#         return StreamCopy.apply(curr_copy_stream, next_copy_stream, *data)
+#     else:
+#         # outputs should be a single tensor
+#         return StreamCopy.apply(curr_copy_stream, next_copy_stream, data)[0]
+    
+def stream_copy(curr_copy_stream: torch.cuda.Stream, next_copy_stream: torch.cuda.Stream, batch: Batch):
+    batch[:] = StreamCopy.apply(curr_copy_stream, next_copy_stream, *batch)
+    return batch
     
 
 class Wait(torch.autograd.Function):
@@ -124,8 +129,12 @@ class Wait(torch.autograd.Function):
         wait_stream(prev_stream, curr_stream)
         return (None, None) + tensors
 
-def stream_wait(curr_stream, prev_stream, data):
-    if isinstance(data, (list, tuple)):
-        return Wait.apply(curr_stream, prev_stream, *data)
-    else:
-        return Wait.apply(curr_stream, prev_stream, data)[0]
+# def stream_wait(curr_stream, prev_stream, data):
+#     if isinstance(data, (list, tuple)):
+#         return Wait.apply(curr_stream, prev_stream, *data)
+#     else:
+#         return Wait.apply(curr_stream, prev_stream, data)[0]
+
+def stream_wait(curr_stream, prev_stream, batch: Batch) -> None:
+    batch[:] = Wait.apply(curr_stream, prev_stream, *batch)
+    return batch
