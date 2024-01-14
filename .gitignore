@@ -8,3 +8,4 @@ benchmarks/__pycache__/
 ddp_exprs/
 slurm_logs/
 MyGPipe/__pycache__/
+experiments/CleanParallel/__pycache__/
