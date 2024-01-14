@@ -53,6 +53,7 @@ def build_GPT2(
         ('pos_encoding', PositionalEncoding(d_model, max_seq_len)),
         ('blocks', nn.Sequential(*[GPT2Block(d_model, num_heads, d_ff, dropout) for _ in range(num_layers)])),
         ('ln_f', nn.LayerNorm(d_model)),
+        ('head', nn.Linear(d_model, vocab_size, bias=False))
     ]))
     model = flatten_sequential(model)
 
@@ -72,16 +73,15 @@ def build_GPT2(
     return model
 
 # Example usage
-def gpt2_small():
+def gpt2_small(vocab_size: int = 50257, max_seq_len: int = 1024):
     # https://github.com/openai/gpt-2/blob/master/model_card.md
-    
     return build_GPT2(
         num_layers=12, 
         num_heads=12, 
         d_model=768, 
         d_ff=3072, 
-        vocab_size=50257, 
-        max_seq_len=1024
+        vocab_size=vocab_size, 
+        max_seq_len=max_seq_len,
     )
 
 
@@ -96,6 +96,13 @@ EXAMPLE_TEXTS = [
 ]
 
 
+def load_text_from_file(filename: str) -> str:
+    text_list = []
+    with open(filename, 'r') as f:
+        for line in f:
+            text_list.append(line.strip())
+    return text_list
+
 class TextDataset(Dataset):
     def __init__(self, texts, tokenizer, max_length):
         self.tokenizer = tokenizer
@@ -108,72 +115,40 @@ class TextDataset(Dataset):
         input_ids = self.inputs[idx]
         return torch.tensor(input_ids, dtype=torch.long)
 
-def build_train_stuffs(
-        model: nn.Module, 
-        batch_size: int, 
-        device: torch.device,
-        data_dir: str='./data'
-    ):
-    from torchtext.datasets import WikiText2
-    from torchtext.data.utils import get_tokenizer
+def build_train_stuffs(model: nn.Module, batch_size: int, max_length: int, dataset_texts: List[str] =EXAMPLE_TEXTS):
 
-    data_iter = WikiText2(split='test', root=data_dir)
-    tokenizer = get_tokenizer('basic_english')
-    from torchtext.vocab import build_vocab_from_iterator
-    vocab = build_vocab_from_iterator(map(tokenizer, data_iter), specials=['<unk>'])
-    vocab.set_default_index(vocab['<unk>'])
+    # tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+    # dataset = TextDataset(dataset_texts, tokenizer, max_length)
 
-    def data_process(raw_text_iter) -> torch.Tensor:
-        """Converts raw text into a flat Tensor."""
-        data = [torch.tensor(vocab(tokenizer(item)), dtype=torch.long) for item in raw_text_iter]
-        return torch.cat(tuple(filter(lambda t: t.numel() > 0, data)))
-    dataset = data_process(data_iter)
+    # def collate_fn_padd(batch):
+    #     '''
+    #     Padds batch of variable length
 
+    #     note: it converts things ToTensor manually here since the ToTensor transform
+    #     assume it takes in images rather than arbitrary tensors.
+    #     '''
+    #     ## get sequence lengths
+    #     lengths = torch.tensor([ t.shape[0] for t in batch ])
+    #     ## padd
+    #     batch = [ torch.Tensor(t) for t in batch ]
+    #     batch = torch.nn.utils.rnn.pad_sequence(batch)
+    #     ## compute mask
+    #     mask = (batch != 0)
+    #     return batch, lengths, mask
+
+    # train_loader = DataLoader(
+    #     dataset, 
+    #     batch_size=batch_size,
+    #     shuffle=True,
+    #     collate_fn=collate_fn_padd,
+    # )
     
-    def batchify(data: torch.Tensor, bsz: int) -> torch.Tensor:
-        """Divides the data into ``bsz`` separate sequences, removing extra elements
-        that wouldn't cleanly fit.
-
-        Arguments:
-            data: Tensor, shape ``[N]``
-            bsz: int, batch size
-
-        Returns:
-            Tensor of shape ``[N // bsz, bsz]``
-        """
-        seq_len = data.size(0) // bsz
-        data = data[:seq_len * bsz]
-        data = data.view(bsz, seq_len).t().contiguous()
-        return data.to(device)
-    
-    dataset = batchify(dataset, batch_size)
-    BPTT = 35
-    def get_batch(source: torch.Tensor, i: int) -> Tuple[torch.Tensor, torch.Tensor]:
-        """
-        Args:
-            source: Tensor, shape ``[full_seq_len, batch_size]``
-            i: int
-
-        Returns:
-            tuple (data, target), where data has shape ``[seq_len, batch_size]`` and
-            target has shape ``[seq_len * batch_size]``
-        """
-        seq_len = min(BPTT, len(source) - 1 - i)
-        data = source[i:i+seq_len]
-        target = source[i+1:i+1+seq_len].reshape(-1)
-        return data, target
 
     # 3. define loss function
     # GPT-2 uses Language Modeling, so we use CrossEntropyLoss, but it's applied differently.
     criterion = nn.CrossEntropyLoss()
 
     # 4. define optimizer
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+    optimizer = optim.AdamW(model.parameters(), lr=0.001)
 
-    return (BPTT, get_batch, dataset), criterion, optimizer
-
-# tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-#     dataset = TextDataset(dataset_texts, tokenizer, max_length)
-#     train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
-
-    
+    return train_loader, criterion, optimizer

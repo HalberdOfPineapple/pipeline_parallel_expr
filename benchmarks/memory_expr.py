@@ -1,4 +1,4 @@
-"""AmoebaNet-D (L, D) Memory Benchmark"""
+import os
 import platform
 import argparse
 from time import perf_counter
@@ -10,8 +10,9 @@ from torch import Tensor, nn
 import torch.nn.functional as F
 from torch.optim import RMSprop
 
-from amoebanet import amoebanetd
 from resnet import resnet100, build_train_stuffs
+from gpt_2 import gpt2_small, load_text_from_file
+from gpt_2 import build_train_stuffs as build_gpt2_stuffs 
 
 import torchgpipe
 from torchgpipe import GPipe
@@ -44,21 +45,25 @@ resnet100_partition_plans: Dict[str, List[int]] = {
     4: [15, 13, 14, 14],
 }
 
+def args_to_expr_name(model_type: str, args: Dict[str, Any]) -> str:
+    return (f'{model_type}_K{args["num_partitions"]}_M{args["num_microbatches"]}_'
+           f'{"check_" if args["checkpoint_enabled"] else ""}'
+           f'{"torchgpipe" if args["use_torchgpipe"] else "self"}'
+    )
+
 def init_expr(config, model: nn.Sequential, partition_plans: Dict[int, List[int]]):
     num_partitions = config['num_partitions']
+    model_type = 'resnet' if config['use_resnet'] else 'gpt2'
     if num_partitions == 0:
         print_log("Running the baseline...")
-        expr_name = "baseline"
-        init_logger(expr_name)
+        expr_name = f"{model_type}_baseline"
+        init_logger(expr_name, gpt_log=not config['use_resnet'])
 
         devices = [torch.device('cuda:0')]
         model.to(devices[0])
     else:
-        expr_name = (
-        f'mem_expr_K{config["num_partitions"]}_M{config["num_microbatches"]}_'
-        f'{"check_" if config["checkpoint_enabled"] else ""}'
-        f'{"torchgpipe" if  config["use_torchgpipe"] else "self"}')
-        init_logger(expr_name)
+        expr_name = args_to_expr_name(model_type, config)
+        init_logger(expr_name, gpt_log=not config['use_resnet'])
 
         print_log('=' * 80 + '\nConfiguration')
         for k, v in config.items():
@@ -100,6 +105,120 @@ def print_max_memory(devices: List[torch.device]):
     for d in devices:
         memory_usage = torch.cuda.memory_reserved(d)
         print_log(f'{d!s}: {memory_usage:,} Bytes ({memory_usage / 1024**2:.2f} MiB)')
+
+def print_mem_usage(device: torch.device):
+    memory_usage = torch.cuda.memory_reserved(device)
+    print(f'{device!s}: {memory_usage:,} Bytes ({memory_usage / 1024**3:.2f} GiB)')
+
+def print_devices_mem_usage(devices: List[torch.device]):
+    for device in devices:
+        print_mem_usage(device)
+
+# 2 + 12 + 2
+gpt2_partition_plans: Dict[str, List[int]] = {
+    1: [16], 
+    2: [8, 8],
+    4: [5, 3, 3, 5],
+}
+def run_gpt2_expr(config):
+    # ============================================================================
+    # Model related
+    num_batches = 10
+    seq_length = 128
+    batch_size = 64
+    vocab_size = 3000
+    config['batch_size'] = batch_size
+
+    model = gpt2_small(vocab_size, seq_length)
+    model = cast(nn.Sequential, model)
+    model, devices = init_expr(config, model, gpt2_partition_plans)
+    print_log("Running GPT-2 expr...")
+
+    # ============================================================================
+    # Training Related
+    
+    def load_dataset(batch_size, seq_length):
+        num_samples = 2000  # Number of samples in the dataset
+        # Create random data samples
+        data = torch.randint(0, vocab_size, (num_samples, seq_length))
+        # Convert to batches
+        dataset = torch.utils.data.TensorDataset(data)
+        dataloader = torch.utils.data.DataLoader(
+            dataset, batch_size=batch_size, shuffle=True)
+        return dataloader
+
+    dataloader = load_dataset(batch_size, seq_length)
+    criterion = nn.CrossEntropyLoss()  # Common choice for language models
+    optimizer = torch.optim.SGD(
+        model.parameters(),
+        lr=0.01,
+        momentum=0.9,
+        weight_decay=0.0001,
+        nesterov=True,
+    )
+    input_device, output_device = devices[0], devices[-1]
+
+    # =====================================================================
+    # Parameters
+    param_scale = 3
+    param_count, param_size = profile_params(model, param_scale=3)
+    
+    # ============================================================================
+    # Profiling by training
+    hr()
+    print_log("Profiling...")
+    model.train()
+    torch.cuda.empty_cache()
+
+    for device in devices:
+        torch.cuda.reset_peak_memory_stats(device)
+    forward_times, backward_times = [], []
+
+    for batch_idx, (data_batch,) in enumerate(dataloader):
+        if batch_idx >= num_batches: break
+
+        # Prepare data (assuming language modeling task)
+        inputs = data_batch.to(input_device)
+        targets = torch.randint(0, vocab_size, (batch_size * seq_length, )).to(output_device) # (batch_size * seq_length, )
+
+        start_time = perf_counter()
+        # Forward pass
+        outputs = model(inputs) # (batch_size, seq_length, vocab_size)
+        outputs = outputs.view(-1, outputs.size(-1))  # (batch_size * seq_length, vocab_size)
+
+        loss = criterion(outputs, targets)
+        forward_times.append(perf_counter() - start_time)
+
+        # Backward pass and optimization
+        optimizer.zero_grad()
+        start_time = perf_counter()
+        loss.backward()
+        backward_times.append(perf_counter() - start_time)
+
+        optimizer.step()
+    total_time = sum(forward_times) + sum(backward_times)
+
+    # ============================================================================
+    # Save memory profiling statistics
+    hr()
+    max_memory = 0
+    for d in devices:
+        torch.cuda.synchronize(d)
+        max_memory += torch.cuda.max_memory_reserved(d)
+    latent_size = max_memory - param_size * param_scale
+
+    print_log(f'Peak Activation Memory: {latent_size:,} Bytes ({latent_size / 1024**3:.2f} GiB)')
+    print_log(f'Total Memory: {max_memory:,} Bytes ({max_memory / 1024**3:.2f} GiB)')
+    print_log(f'Average Forward Time: {sum(forward_times)/len(forward_times):.3f} sec')
+    print_log(f'Average Backward Time: {sum(backward_times)/len(backward_times):.3f} sec')
+    print_log(f"Throughput: {batch_size * num_batches / total_time:.3f} samples/sec")
+    print_log("Profiling Completed.")
+
+    # ============================================================================
+    # Max memory per device
+    print_max_memory(devices)
+    
+
 
 def run_resnet_expr(config):
     print_log("Running ResNet expr...")
@@ -176,70 +295,9 @@ def main(config):
     if config['use_resnet']:
         run_resnet_expr(config)
         return
-
-    model = amoebanetd(num_classes=1000, num_layers=L, num_filters=D)
-    model = cast(nn.Sequential, model)
-    model, devices = init_expr(config, model, amoeba_partition_plans)
-
-    # =====================================================================
-    # Training-related
-    optimizer = RMSprop(model.parameters())
-
-    in_device = devices[0]
-    out_device = devices[-1]
-    torch.cuda.set_device(in_device)
-
-    num_samples = 5
-    batch_size = 128
-    num_classes = 1000
-    input = torch.rand(batch_size, 3, 224, 224, device=in_device)
-    target = torch.randint(num_classes, (batch_size,), device=out_device)
-
-    # =====================================================================
-    # Parameters
-    param_scale = 3
-    param_count, param_size = profile_params(model, param_scale)
-
-    # =====================================================================
-    # Profiling
-    hr()
-    print_log("Start Profiling...")
-    torch.cuda.empty_cache()
-    for device in devices:
-        torch.cuda.reset_peak_memory_stats(device)
-
-    forward_times, backward_times = [], []
-    for _ in range(num_samples):
-        start_time = perf_counter()
-        output = model(input)
-        forward_times.append(perf_counter() - start_time)
-
-        loss = F.cross_entropy(cast(Tensor, output), target)
-
-        start_time = perf_counter()
-        loss.backward()
-        backward_times.append(perf_counter() - start_time)
-
-        optimizer.step()
-
-    max_memory = 0
-    for device in devices:
-        torch.cuda.synchronize(device)
-        max_memory += torch.cuda.max_memory_reserved(device)
-
-    latent_size = max_memory - param_size * param_scale
-    print_log(f'Peak Activation Memory: {latent_size:,} Bytes ({latent_size / 1024**3:.2f} GiB)')
-    print_log(f'Total Memory: {max_memory:,} Bytes ({max_memory / 1024**3:.2f} GiB)')
-    print_log(f'Average Forward Time: {sum(forward_times)/len(forward_times):.3f} sec')
-    print_log(f'Average Backward Time: {sum(backward_times)/len(backward_times):.3f} sec')
-    print_log("Profiling Completed.")
-
-    # MAX MEMORY PER DEVICE =======================================================================
-    hr()
-    for device in devices:
-        memory_usage = torch.cuda.memory_reserved(device)
-        print_log(f'{device!s}: {memory_usage:,} Bytes ({memory_usage / 1024**3:.2f} GiB)')
-
+    else:
+        run_gpt2_expr(config)
+        return
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
