@@ -23,7 +23,7 @@ warnings.filterwarnings('ignore', category=UserWarning, message='TypedStorage is
 Stuffs = Tuple[nn.Module, int, List[torch.device]]  # (model, batch_size, devices)
 Experiment = Callable[[nn.Module, List[int]], Stuffs]
 
-def _gpipe(model: nn.Module,
+def pipeline_model(model: nn.Module,
            devices: List[int],
            chunks: int,
            balance: List[int],
@@ -43,51 +43,6 @@ def _gpipe(model: nn.Module,
                     num_micro_batches=chunks, 
                     checkpoint_strategy=checkpoint)
     return model, list(model.devices)
-
-class Experiments:
-
-    @staticmethod
-    def n2m1(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 155 # 96
-        chunks = 1
-        balance = [7, 17]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='always')
-        
-    @staticmethod
-    def n2m4(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 480 # 256
-        chunks = 4
-        balance = [9, 15]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
-
-    @staticmethod
-    def n2m32(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 1500 # 1280
-        chunks = 32
-        balance = [9, 15]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
-
-    @staticmethod
-    def n4m1(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 260 # 160
-        chunks = 1
-        balance = [3, 4, 5, 12]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='always')
-
-    @staticmethod
-    def n4m4(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 600 # 360
-        chunks = 4
-        balance = [3, 6, 7, 8]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
-
-    @staticmethod
-    def n4m32(model: nn.Module, devices: List[int]) -> Stuffs:
-        batch_size = 980 # 1152
-        chunks = 32
-        balance = [3, 6, 7, 8]
-        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
-
 
 EXPERIMENTS: Dict[str, Tuple] = {
     'n2m1': (155, 1, [7, 17]),
@@ -127,7 +82,7 @@ def main(args) -> None:
 
     batch_size, num_microbatches, devices = EXPERIMENTS[experiment]
     checkpoint_strategy = 'except_last' if num_microbatches > 1 else 'always'
-    model, devices = _gpipe(
+    model, devices = pipeline_model(
         model=model, 
         devices=devices, 
         batch_size=batch_size, 
