@@ -14,7 +14,6 @@ from resnet import resnet100, build_train_stuffs
 from gpt_2 import gpt2_small, load_text_from_file
 from gpt_2 import build_train_stuffs as build_gpt2_stuffs 
 
-import torchgpipe
 from torchgpipe import GPipe
 from MyGPipe import GPipe as SelfGPipe
 from utils import init_logger, get_logger, print_log, DATA_DIR
@@ -123,7 +122,7 @@ gpt2_partition_plans: Dict[str, List[int]] = {
 def run_gpt2_expr(config):
     # ============================================================================
     # Model related
-    num_batches = 10
+    num_batches = 100
     seq_length = 128
     batch_size = 64
     vocab_size = 3000

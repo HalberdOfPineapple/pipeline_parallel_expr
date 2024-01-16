@@ -18,7 +18,7 @@ for k in "${num_partitions_values[@]}"; do
     for m in "${num_microbatches_values[@]}"; do
         for t in "${use_torchgpipe_values[@]}"; do
             # Construct the command with the current combination of arguments
-            command="python benchmarks/speed_expr.py -k $k -m $m"
+            command="python benchmarks/speed_expr.py -k $k -m $m -c"
             if [ "$t" == "true" ]; then
                 command+=" -t"
             fi

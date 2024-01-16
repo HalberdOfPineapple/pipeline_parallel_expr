@@ -4,6 +4,8 @@ from torch import nn
 from . import stream_utils, microbatch
 from .checkpointing import CheckPointingCLS, Join, CheckPointingCLSv2, join
 from .microbatch import Batch
+from .dependency import depend
+
 from collections import OrderedDict
 from typing import List, Tuple, Callable, Any, Dict, Iterable
 
@@ -43,17 +45,6 @@ def split_module(
     del devices[i:]
     return torch.nn.ModuleList(partitions), devices
 
-def split_batch(batch: torch.Tensor, num_micro_batches: int) -> List[torch.Tensor]:
-    """Split a batch into a list of microbatches"""
-    if isinstance(batch, torch.Tensor):
-        split_batches = batch.chunk(num_micro_batches)
-    else: # batch is a list of tensors
-        split_batches = []
-        for tensor in batch:
-            split_tensor = tensor.chunk(num_micro_batches)
-            split_batches.append(split_tensor)
-        split_batches = zip(*split_batches)
-    return list(split_batches)
 
 def schedule_tasks(num_micro_batches, num_partitions):
     schedules = []
@@ -68,17 +59,6 @@ def schedule_tasks(num_micro_batches, num_partitions):
         schedules.append(schedule)
     return schedules
 
-def merge_data(
-        micro_batches: List[torch.Tensor] | Iterable[Iterable[torch.Tensor]],
-    ) -> torch.Tensor | Tuple[torch.Tensor]:
-    if isinstance(micro_batches[0], torch.Tensor):
-        return torch.cat([micro_batch for micro_batch in micro_batches])
-    else:
-        micro_batches = [micro_batch for micro_batch in micro_batches]
-        merged_micro_batches = []
-        for tensors in zip(*micro_batches):
-            merged_micro_batches.append(torch.cat(tensors))
-        return tuple(merged_micro_batches)
 
 class GPipe(torch.nn.Module):
     def __init__(
@@ -144,15 +124,10 @@ class GPipe(torch.nn.Module):
             for device in self.devices
         ]
         self.cal_streams = [stream_utils.get_default_stream(device) for device in self.devices]
-    
-    def split_batch(self, batch: torch.Tensor) -> List[torch.Tensor]:
-        """Split a batch into a list of microbatches"""
-        return split_batch(batch, self.num_micro_batches)
 
     def forward(self, input_data: torch.Tensor):
         # list of tensors, each of which has shape (micro_batch_size, ...)
-        # micro_batches: List[torch.Tensor] = self.split_batch(input_data)
-        micro_batches: List[Batch] = microbatch.scatter(input_data, self.num_micro_batches)
+        micro_batches: List[Batch] = microbatch.split_batch(input_data, self.num_micro_batches)
 
 
         # Note that number of microbatches may be different from pre-defined self.num_micro_batches
@@ -160,15 +135,14 @@ class GPipe(torch.nn.Module):
         schedules: List[List[Tuple[int, int]]] = schedule_tasks(
                                         num_micro_batches=len(micro_batches),
                                         num_partitions=self.num_partitions,)
-        # print("Schedules: ")
-        # for schedule in schedules:
-        #     print(schedule)
 
         for i, schedule in enumerate(schedules):
             for micro_batch_id, partition_id in schedule:
                 # print('-' * 30)
                 # print(f"Executing Step {i}, Micro-batch {micro_batch_id}, Partition {partition_id}")
                 micro_batch: Batch = micro_batches[micro_batch_id]
+                if micro_batch_id > 0:
+                    depend(micro_batches[micro_batch_id - 1], micro_batch)
 
                 if partition_id > 0:
                     micro_batch = stream_utils.stream_copy(
@@ -186,13 +160,7 @@ class GPipe(torch.nn.Module):
 
                 # Forward Calculation of this microbatch
                 ckpt = None
-                # if partition_id in self.checkpoint_layers:
                 if micro_batch_id < self.checkpoint_stop:
-                    # ckpt = CheckPointingCLS(
-                    #     self.cal_streams[partition_id], 
-                    #     self.partitions[partition_id],
-                    #     micro_batch,
-                    # )
                     ckpt = CheckPointingCLSv2(
                         self.cal_streams[partition_id], 
                         self.partitions[partition_id],
@@ -201,7 +169,6 @@ class GPipe(torch.nn.Module):
                     micro_batch = ckpt.checkpoint()
                 else:
                     with torch.cuda.stream(self.cal_streams[partition_id]):
-                        # micro_batch = self.partitions[partition_id](micro_batch)
                         micro_batch = micro_batch.call(self.partitions[partition_id])
 
                 # For non-last partitions, the copy stream should wait for the calculation stream to finish before copying data to the next partition
@@ -213,22 +180,11 @@ class GPipe(torch.nn.Module):
                     )
 
                 # Recompute
-                # if partition_id in self.checkpoint_layers:
                 if micro_batch_id < self.checkpoint_stop:
-                    # aux_tensor = ckpt.recompute(micro_batch)
-                    # micro_batch = Join.apply(micro_batch, aux_tensor)
-
-                    # aux_tensor = ckpt.recompute(micro_batch)
-                    # micro_batch = join(aux_tensor, micro_batch)
-
-                    # aux_tensor = ckpt.recompute(micro_batch)
-                    # micro_batch[0] = join(micro_batch[0], aux_tensor)
                     ckpt.recompute(micro_batch)
 
                 # Update the data
                 micro_batches[micro_batch_id] = micro_batch
-            # print_devices_mem_usage(self.devices)
     
-        # output = merge_data(micro_batches)
-        output = microbatch.gather(micro_batches)
+        output = microbatch.merge_data(micro_batches)
         return output

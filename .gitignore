@@ -11,3 +11,4 @@ MyGPipe/__pycache__/
 experiments/CleanParallel/__pycache__/
 draft*
 benchmarks/draft*
+legacy/*

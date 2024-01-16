@@ -1,18 +1,17 @@
-"""AmoebaNet-D (L, D) Memory Benchmark"""
+"""AmoebaNet-D (18, 256) Speed Benchmark"""
 import platform
 import argparse
-from time import perf_counter
+import time
 from typing import Any, Callable, Dict, List, Optional, Tuple, cast
 
 import click
 import torch
-from torch import Tensor, nn
+from torch import nn
 import torch.nn.functional as F
-from torch.optim import RMSprop
+from torch.optim import SGD
+import torch.utils.data
 
 from amoebanet import amoebanetd
-from resnet import resnet100, build_train_stuffs
-
 import torchgpipe
 from torchgpipe import GPipe
 from MyGPipe import GPipe as SelfGPipe
@@ -21,132 +20,204 @@ from utils import init_logger, get_logger, print_log, DATA_DIR
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning, message='TypedStorage is deprecated')
 
-Stuffs = Tuple[nn.Module, int, int, List[torch.device]]  # (model, L, D, devices)
-Experiment = Callable[[List[int]], Stuffs]
+Stuffs = Tuple[nn.Module, int, List[torch.device]]  # (model, batch_size, devices)
+Experiment = Callable[[nn.Module, List[int]], Stuffs]
+
+def _gpipe(model: nn.Module,
+           devices: List[int],
+           chunks: int,
+           balance: List[int],
+           checkpoint: str,
+           use_self_gpipe: bool):
+    if not use_self_gpipe:
+        print("Using torchgpipe...")
+        model = cast(nn.Sequential, model)
+        model = GPipe(model, balance, devices=devices, chunks=chunks, checkpoint=checkpoint)
+    else:
+        print_log("Using self-implemented Gpipe...")
+        model = cast(nn.Sequential, model)
+        model = SelfGPipe(
+                    model, 
+                    partition_plan=balance, 
+                    devices=devices, 
+                    num_micro_batches=chunks, 
+                    checkpoint_strategy=checkpoint)
+    return model, list(model.devices)
+
+class Experiments:
+
+    @staticmethod
+    def n2m1(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 155 # 96
+        chunks = 1
+        balance = [7, 17]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='always')
+        
+    @staticmethod
+    def n2m4(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 480 # 256
+        chunks = 4
+        balance = [9, 15]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
+
+    @staticmethod
+    def n2m32(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 1500 # 1280
+        chunks = 32
+        balance = [9, 15]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
+
+    @staticmethod
+    def n4m1(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 260 # 160
+        chunks = 1
+        balance = [3, 4, 5, 12]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='always')
+
+    @staticmethod
+    def n4m4(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 600 # 360
+        chunks = 4
+        balance = [3, 6, 7, 8]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
+
+    @staticmethod
+    def n4m32(model: nn.Module, devices: List[int]) -> Stuffs:
+        batch_size = 980 # 1152
+        chunks = 32
+        balance = [3, 6, 7, 8]
+        return _gpipe(model, devices, batch_size, chunks, balance, checkpoint='except_last')
+
+
+EXPERIMENTS: Dict[str, Tuple] = {
+    'n2m1': (155, 1, [7, 17]),
+    'n2m4': (480, 4, [9, 15]),
+    'n2m32': (1500, 32, [9, 15]),
+    'n4m1': (260, 1, [3, 4, 5, 12]),
+    'n4m4': (600, 4, [3, 6, 7, 8]),
+    'n4m32': (980, 32, [3, 6, 7, 8]),
+}
+
+
+BASE_TIME: float = 0
 
 
 def hr():
     print_log('-' * 80)
 
-# 3 + [3, 13, 30, 3] + 4
-# 3 x 64 + 13 x 128 + 30 x 256 + 3 x 512
-partition_plans: Dict[str, List[int]] = {
-    1: [56], 
-    2: [33, 23],
-    4: [15, 13, 14, 14],
-}
 
-batch_sizes: Dict[str, int] = {
-    'n1m1': 64,
-    'n1m4': 256,
-    'n1m32': 2048,
-    'n2m1': 128,
-    'n2m4': 512,
-    'n2m32': 4096,
-    'n4m1': 256,
-    'n4m4': 1024,
-    'n4m32': 8192,
-}
+def main(args) -> None:
+    epochs = args.epochs
+    skip_epochs = args.skip_epochs
+    if skip_epochs >= epochs:
+        raise ValueError('--skip-epochs=%d must be less than --epochs=%d' % (skip_epochs, epochs))
 
-def args_to_exprname(args: Dict[str, Any]) -> str:
-    return (
-        f'speed_K{args["num_partitions"]}_M{args["num_micro_batches"]}_'
-        f'{"torchgpipe" if args["use_torchgpipe"] else "self"}')
+    # ============================================================================
+    # Model related
+    experiment = args.experiment
+    init_logger(experiment, speed_log=True)
 
-def get_batch_size(args: Dict[str, Any]) -> int:
-    return batch_sizes[f'n{args["num_partitions"]}m{args["num_micro_batches"]}']
+    num_classes = 1000
+    num_layers = 18
+    num_filters = 256
+    model: nn.Module = amoebanetd(
+        num_classes=num_classes, 
+        num_layers=num_layers, 
+        num_filters=num_filters,)
 
-# baseline - (K=1, M=1)
-def init_expr(config, model: nn.Sequential, partition_plans: Dict[int, List[int]]):
-    num_partitions = config['num_partitions']
-    expr_name =  args_to_exprname(config)
-    init_logger(expr_name, speed_log=True)
-
-    print_log('=' * 80 + '\nConfiguration')
-    for k, v in config.items():
-        print_log(f'{k}: {v}')
-    print_log('=' * 80)
-
-    parititon_plan = partition_plans[num_partitions]
-    num_microbatches = config['num_micro_batches']
-    checkpoint_strategy = 'except_last' if config['checkpoint_enabled'] else 'never'
-
-    hr()
-    use_torchgpipe = config['use_torchgpipe']
-    print_log(f'Pipelining model with {"self-implemented GPipe" if not use_torchgpipe else "torchgpipe"}...')
-    if use_torchgpipe:
-        model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
-    else:
-        model = SelfGPipe(
-            module=model, 
-            partition_plan=parititon_plan,
-            num_micro_batches=num_microbatches,
-            checkpoint_strategy=checkpoint_strategy,
-        )
-
-    devices = model.devices
-    return model, devices
-
-def main(config):
-    print_log("Running ResNet expr...")
-
-    num_classes = 10
-    model = resnet100(num_classes=num_classes)
-    model = cast(nn.Sequential, model)
-    model, devices = init_expr(config, model, partition_plans)
+    batch_size, num_microbatches, devices = EXPERIMENTS[experiment]
+    checkpoint_strategy = 'except_last' if num_microbatches > 1 else 'always'
+    model, devices = _gpipe(
+        model=model, 
+        devices=devices, 
+        batch_size=batch_size, 
+        chunks=num_microbatches, 
+        balance=devices, 
+        checkpoint=checkpoint_strategy,
+        use_self_gpipe=args.use_self_gpipe)
 
     # ============================================================================
     # Training Related
-    num_batches = 10
-    batch_size = get_batch_size(config)
-    train_loader, criterion, optimizer = build_train_stuffs(
-        model, batch_size, DATA_DIR)
-    input_device, output_device = devices[0], devices[-1]
+    optimizer = SGD(model.parameters(), lr=0.1)
+    in_device = devices[0]
+    out_device = devices[-1]
+    torch.cuda.set_device(in_device)
 
-    print_log(f"Number of batches: {num_batches}")
-    print_log(f"Batch size: {batch_size}")
+    # This experiment cares about only training speed, rather than accuracy.
+    # To eliminate any overhead due to data loading, we use fake random 224x224
+    # images over 1000 labels.
+    dataset_size = 10000
+    input = torch.rand(batch_size, 3, 224, 224, device=in_device)
+    target = torch.randint(num_classes, (batch_size,), device=out_device)
+    data = [(input, target)] * (dataset_size//batch_size)
 
-    # ============================================================================
-    # Profiling by training
+    if dataset_size % batch_size != 0:
+        last_input = input[:dataset_size % batch_size]
+        last_target = target[:dataset_size % batch_size]
+        data.append((last_input, last_target))
+
+    # TRAIN =======================================================================================
     hr()
     print_log("Profiling...")
-    
-    # Prepare statistics for profiling
     model.train()
     torch.cuda.empty_cache()
-    for device in devices:
-        torch.cuda.reset_peak_memory_stats(device)
 
-    iter_times = []
-    for idx, (inputs, targets) in enumerate(train_loader):
-        if idx == num_batches: break
-        inputs, targets = inputs.to(input_device), targets.to(output_device)
+    global BASE_TIME
+    BASE_TIME = time.time()
 
-        start_time = perf_counter()
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        
+    def run_epoch(epoch: int) -> Tuple[float, float]:
+        torch.cuda.synchronize(in_device)
+        start_time = time.time()
 
-        start_time = perf_counter()
-        optimizer.zero_grad()
-        loss.backward()
-        iter_times.append(perf_counter() - start_time)
+        data_trained = 0
+        for i, (input, target) in enumerate(data):
+            data_trained += input.size(0)
 
-        # Optimizer step is outside of the backward pass timing
-        optimizer.step() 
-        print_log(f"Iter {idx} time: {iter_times[-1]:.3f}")
-    total_time = sum(iter_times)
+            output = model(input)
+            loss = F.cross_entropy(output, target)
+            loss.backward()
 
-    print_log(f"Throughput: {batch_size * num_batches / total_time:.3f} samples/sec")
-    print_log("Profiling Completed.")
+            optimizer.step()
+            optimizer.zero_grad()
+        torch.cuda.synchronize(in_device)
+
+        # 00:02:03 | 1/20 epoch | 200.000 samples/sec, 123.456 sec/epoch
+        elapsed_time = time.time() - start_time
+        throughput = dataset_size / elapsed_time
+
+        print_log('%d/%d epoch | %.3f samples/sec, %.3f sec/epoch'
+            '' % (epoch+1, epochs, throughput, elapsed_time), clear=True)
+        return throughput, elapsed_time
+
+    throughputs = []
+    elapsed_times = []
+
+    hr()
+    for epoch in range(epochs):
+        throughput, elapsed_time = run_epoch(epoch)
+        if epoch < skip_epochs:
+            continue
+
+        throughputs.append(throughput)
+        elapsed_times.append(elapsed_time)
+    hr()
+
+    # RESULT ======================================================================================
+    # pipeline-4, 2-10 epochs | 200.000 samples/sec, 123.456 sec/epoch (average)
+    n = len(throughputs)
+    throughput = sum(throughputs) / n
+    elapsed_time = sum(elapsed_times) / n
+    print_log('| %.3f samples/sec, %.3f sec/epoch (average)'
+               '' % (throughput, elapsed_time))
 
 
 if __name__ == '__main__':
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument('--num_partitions', '-k', type=int, default=2)
-    argparser.add_argument('--num_micro_batches', '-m', type=int, default=1)
-    argparser.add_argument('--checkpoint_enabled', '-c', action='store_true')
-    argparser.add_argument('--use_torchgpipe', '-t', action='store_true') # default: self-gpipe
-    config = argparser.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('experiment', choices=EXPERIMENTS.keys())
+    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--skip-epochs', type=int, default=0)
+    parser.add_argument('--devices', type=str, default=None)
+    parser.add_argument('--use-self-gpipe', action='store_true')
+    args = parser.parse_args()
 
-    main(vars(config))
+    main(args)

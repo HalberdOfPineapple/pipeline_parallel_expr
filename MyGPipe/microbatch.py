@@ -1,4 +1,5 @@
-"""Manipulation of micro-batches."""
+"""Manipulation of micro-batches, mostly directly borrowed from torchgpipe as this 
+is not a focus of this project."""
 import typing
 from typing import Callable, Iterable, Iterator, List, Tuple, Union, cast
 
@@ -140,7 +141,7 @@ def check(input: TensorOrTensors) -> None:
         raise TypeError(f'expected Tensor, but got {input.__class__.__name__}')
 
 
-def scatter(input: TensorOrTensors, chunks: int) -> List[Batch]:
+def split_batch(input: TensorOrTensors, chunks: int) -> List[Batch]:
     """Splits an input mini-batch into multiple micro-batches."""
     inputs: Iterable[TensorOrTensors]
 
@@ -158,7 +159,9 @@ def scatter(input: TensorOrTensors, chunks: int) -> List[Batch]:
     return [Batch(x) for x in inputs]
 
 
-def gather(outputs: List[Batch]) -> TensorOrTensors:
+
+
+def merge_data(outputs: List[Batch]) -> TensorOrTensors:
     """Concatenates output micro-batches into a mini-batch."""
     output: TensorOrTensors
 

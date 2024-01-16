@@ -8,10 +8,12 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 GPT_LOG_DIR = os.path.join(BASE_DIR, 'gpt_logs')
 SPEED_LOG_DIR = os.path.join(BASE_DIR, 'speed_logs')
 DATA_DIR = os.path.join(BASE_DIR, 'data')
+FIG_DIR = os.path.join(BASE_DIR, 'figs')
 if not os.path.exists(LOG_DIR): os.makedirs(LOG_DIR)
 if not os.path.exists(DATA_DIR): os.makedirs(DATA_DIR)
 if not os.path.exists(SPEED_LOG_DIR): os.makedirs(SPEED_LOG_DIR)
 if not os.path.exists(GPT_LOG_DIR): os.makedirs(GPT_LOG_DIR)
+if not os.path.exists(FIG_DIR): os.makedirs(FIG_DIR)
 
 LOGGER: logging.Logger = None
 EXPR_NAME: str = None
