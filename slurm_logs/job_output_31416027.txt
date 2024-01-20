@@ -1,0 +1,2814 @@
+Running: python benchmarks/memory_expr.py -k 1 -m 1
+Initialize logger for experiment: gpt2_K1_M1_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,936,070,144 Bytes (6.46 GiB)
+Total Memory: 8,013,217,792 Bytes (7.46 GiB)
+Average Forward Time: 0.068 sec
+Average Backward Time: 0.039 sec
+Throughput: 598.229 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 8,013,217,792 Bytes (7642.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 1 -t
+Initialize logger for experiment: gpt2_K1_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,910,904,320 Bytes (6.44 GiB)
+Total Memory: 7,988,051,968 Bytes (7.44 GiB)
+Average Forward Time: 0.063 sec
+Average Backward Time: 0.041 sec
+Throughput: 617.299 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,988,051,968 Bytes (7618.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 1 -c
+Initialize logger for experiment: gpt2_K1_M1_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,491,473,920 Bytes (6.05 GiB)
+Total Memory: 7,568,621,568 Bytes (7.05 GiB)
+Average Forward Time: 0.060 sec
+Average Backward Time: 0.070 sec
+Throughput: 490.599 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,568,621,568 Bytes (7218.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 1 -c -t
+Initialize logger for experiment: gpt2_K1_M1_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,910,904,320 Bytes (6.44 GiB)
+Total Memory: 7,988,051,968 Bytes (7.44 GiB)
+Average Forward Time: 0.060 sec
+Average Backward Time: 0.038 sec
+Throughput: 648.180 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,988,051,968 Bytes (7618.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 2
+Initialize logger for experiment: gpt2_K1_M2_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,510,348,288 Bytes (6.06 GiB)
+Total Memory: 7,587,495,936 Bytes (7.07 GiB)
+Average Forward Time: 0.067 sec
+Average Backward Time: 0.193 sec
+Throughput: 246.217 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,587,495,936 Bytes (7236.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 2 -t
+Initialize logger for experiment: gpt2_K1_M2_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,535,514,112 Bytes (6.09 GiB)
+Total Memory: 7,612,661,760 Bytes (7.09 GiB)
+Average Forward Time: 0.069 sec
+Average Backward Time: 0.192 sec
+Throughput: 245.016 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,612,661,760 Bytes (7260.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 2 -c
+Initialize logger for experiment: gpt2_K1_M2_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 4,769,712,128 Bytes (4.44 GiB)
+Total Memory: 5,846,859,776 Bytes (5.45 GiB)
+Average Forward Time: 0.066 sec
+Average Backward Time: 0.327 sec
+Throughput: 162.651 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 5,846,859,776 Bytes (5576.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 2 -c -t
+Initialize logger for experiment: gpt2_K1_M2_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 4,425,779,200 Bytes (4.12 GiB)
+Total Memory: 5,502,926,848 Bytes (5.12 GiB)
+Average Forward Time: 0.072 sec
+Average Backward Time: 0.254 sec
+Throughput: 196.490 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 5,502,926,848 Bytes (5248.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 4
+Initialize logger for experiment: gpt2_K1_M4_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,315,313,152 Bytes (5.88 GiB)
+Total Memory: 7,392,460,800 Bytes (6.88 GiB)
+Average Forward Time: 0.086 sec
+Average Backward Time: 0.279 sec
+Throughput: 175.236 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,392,460,800 Bytes (7050.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 4 -t
+Initialize logger for experiment: gpt2_K1_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,315,313,152 Bytes (5.88 GiB)
+Total Memory: 7,392,460,800 Bytes (6.88 GiB)
+Average Forward Time: 0.083 sec
+Average Backward Time: 0.278 sec
+Throughput: 177.320 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,392,460,800 Bytes (7050.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 4 -c
+Initialize logger for experiment: gpt2_K1_M4_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,905,685,504 Bytes (3.64 GiB)
+Total Memory: 4,982,833,152 Bytes (4.64 GiB)
+Average Forward Time: 0.077 sec
+Average Backward Time: 0.419 sec
+Throughput: 129.065 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,982,833,152 Bytes (4752.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 4 -c -t
+Initialize logger for experiment: gpt2_K1_M4_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,811,313,664 Bytes (3.55 GiB)
+Total Memory: 4,888,461,312 Bytes (4.55 GiB)
+Average Forward Time: 0.085 sec
+Average Backward Time: 0.386 sec
+Throughput: 136.056 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,888,461,312 Bytes (4662.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 8
+Initialize logger for experiment: gpt2_K1_M8_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,533,416,960 Bytes (6.08 GiB)
+Total Memory: 7,610,564,608 Bytes (7.09 GiB)
+Average Forward Time: 0.133 sec
+Average Backward Time: 0.312 sec
+Throughput: 143.732 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,610,564,608 Bytes (7258.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 8 -t
+Initialize logger for experiment: gpt2_K1_M8_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,533,416,960 Bytes (6.08 GiB)
+Total Memory: 7,610,564,608 Bytes (7.09 GiB)
+Average Forward Time: 0.136 sec
+Average Backward Time: 0.310 sec
+Throughput: 143.555 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,610,564,608 Bytes (7258.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 8 -c
+Initialize logger for experiment: gpt2_K1_M8_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,414,951,936 Bytes (3.18 GiB)
+Total Memory: 4,492,099,584 Bytes (4.18 GiB)
+Average Forward Time: 0.121 sec
+Average Backward Time: 0.460 sec
+Throughput: 110.163 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,492,099,584 Bytes (4284.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 8 -c -t
+Initialize logger for experiment: gpt2_K1_M8_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,362,523,136 Bytes (3.13 GiB)
+Total Memory: 4,439,670,784 Bytes (4.13 GiB)
+Average Forward Time: 0.128 sec
+Average Backward Time: 0.442 sec
+Throughput: 112.284 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,439,670,784 Bytes (4234.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 16
+Initialize logger for experiment: gpt2_K1_M16_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,321,604,608 Bytes (5.89 GiB)
+Total Memory: 7,398,752,256 Bytes (6.89 GiB)
+Average Forward Time: 0.179 sec
+Average Backward Time: 0.342 sec
+Throughput: 122.824 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,398,752,256 Bytes (7056.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 16 -t
+Initialize logger for experiment: gpt2_K1_M16_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,321,604,608 Bytes (5.89 GiB)
+Total Memory: 7,398,752,256 Bytes (6.89 GiB)
+Average Forward Time: 0.175 sec
+Average Backward Time: 0.340 sec
+Throughput: 124.173 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,398,752,256 Bytes (7056.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 16 -c
+Initialize logger for experiment: gpt2_K1_M16_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,003,910,144 Bytes (2.80 GiB)
+Total Memory: 4,081,057,792 Bytes (3.80 GiB)
+Average Forward Time: 0.163 sec
+Average Backward Time: 0.501 sec
+Throughput: 96.409 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,081,057,792 Bytes (3892.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 16 -c -t
+Initialize logger for experiment: gpt2_K1_M16_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,920,024,064 Bytes (2.72 GiB)
+Total Memory: 3,997,171,712 Bytes (3.72 GiB)
+Average Forward Time: 0.166 sec
+Average Backward Time: 0.495 sec
+Throughput: 96.731 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,997,171,712 Bytes (3812.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 32
+Initialize logger for experiment: gpt2_K1_M32_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,430,998,016 Bytes (6.92 GiB)
+Total Memory: 8,508,145,664 Bytes (7.92 GiB)
+Average Forward Time: 0.338 sec
+Average Backward Time: 0.416 sec
+Throughput: 84.866 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 8,508,145,664 Bytes (8114.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 32 -t
+Initialize logger for experiment: gpt2_K1_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,430,998,016 Bytes (6.92 GiB)
+Total Memory: 8,508,145,664 Bytes (7.92 GiB)
+Average Forward Time: 0.337 sec
+Average Backward Time: 0.406 sec
+Throughput: 86.074 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 8,508,145,664 Bytes (8114.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 32 -c
+Initialize logger for experiment: gpt2_K1_M32_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,047,950,336 Bytes (2.84 GiB)
+Total Memory: 4,125,097,984 Bytes (3.84 GiB)
+Average Forward Time: 0.228 sec
+Average Backward Time: 0.606 sec
+Throughput: 76.786 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,125,097,984 Bytes (3934.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 32 -c -t
+Initialize logger for experiment: gpt2_K1_M32_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,091,990,528 Bytes (2.88 GiB)
+Total Memory: 4,169,138,176 Bytes (3.88 GiB)
+Average Forward Time: 0.236 sec
+Average Backward Time: 0.593 sec
+Throughput: 77.210 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,169,138,176 Bytes (3976.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 64
+Initialize logger for experiment: gpt2_K1_M64_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,518,736,896 Bytes (6.07 GiB)
+Total Memory: 7,595,884,544 Bytes (7.07 GiB)
+Average Forward Time: 0.542 sec
+Average Backward Time: 0.622 sec
+Throughput: 55.018 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,595,884,544 Bytes (7244.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 64 -t
+Initialize logger for experiment: gpt2_K1_M64_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,518,736,896 Bytes (6.07 GiB)
+Total Memory: 7,595,884,544 Bytes (7.07 GiB)
+Average Forward Time: 0.571 sec
+Average Backward Time: 0.594 sec
+Throughput: 54.923 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 7,595,884,544 Bytes (7244.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 64 -c
+Initialize logger for experiment: gpt2_K1_M64_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 400,556,032 Bytes (0.37 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,544,633,856 Bytes (2.37 GiB)
+Total Memory: 3,621,781,504 Bytes (3.37 GiB)
+Average Forward Time: 0.404 sec
+Average Backward Time: 0.801 sec
+Throughput: 53.118 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,621,781,504 Bytes (3454.00 MiB)
+Running: python benchmarks/memory_expr.py -k 1 -m 64 -c -t
+Initialize logger for experiment: gpt2_K1_M64_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,532,050,944 Bytes (2.36 GiB)
+Total Memory: 3,609,198,592 Bytes (3.36 GiB)
+Average Forward Time: 0.414 sec
+Average Backward Time: 0.793 sec
+Throughput: 53.025 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,609,198,592 Bytes (3442.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 1
+Initialize logger for experiment: gpt2_K2_M1_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,336,626,176 Bytes (6.83 GiB)
+Total Memory: 8,413,773,824 Bytes (7.84 GiB)
+Average Forward Time: 0.061 sec
+Average Backward Time: 0.040 sec
+Throughput: 633.453 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,988,783,104 Bytes (3804.00 MiB)
+cuda:1: 4,424,990,720 Bytes (4220.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 1 -t
+Initialize logger for experiment: gpt2_K2_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,336,626,176 Bytes (6.83 GiB)
+Total Memory: 8,413,773,824 Bytes (7.84 GiB)
+Average Forward Time: 0.066 sec
+Average Backward Time: 0.040 sec
+Throughput: 604.074 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,988,783,104 Bytes (3804.00 MiB)
+cuda:1: 4,424,990,720 Bytes (4220.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 1 -c
+Initialize logger for experiment: gpt2_K2_M1_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,892,029,952 Bytes (6.42 GiB)
+Total Memory: 7,969,177,600 Bytes (7.42 GiB)
+Average Forward Time: 0.061 sec
+Average Backward Time: 0.052 sec
+Throughput: 568.259 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,787,456,512 Bytes (3612.00 MiB)
+cuda:1: 4,181,721,088 Bytes (3988.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 1 -c -t
+Initialize logger for experiment: gpt2_K2_M1_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,336,626,176 Bytes (6.83 GiB)
+Total Memory: 8,413,773,824 Bytes (7.84 GiB)
+Average Forward Time: 0.065 sec
+Average Backward Time: 0.040 sec
+Throughput: 613.966 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,988,783,104 Bytes (3804.00 MiB)
+cuda:1: 4,424,990,720 Bytes (4220.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 2
+Initialize logger for experiment: gpt2_K2_M2_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,820,726,784 Bytes (6.35 GiB)
+Total Memory: 7,897,874,432 Bytes (7.36 GiB)
+Average Forward Time: 0.068 sec
+Average Backward Time: 0.040 sec
+Throughput: 596.488 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,760,193,536 Bytes (3586.00 MiB)
+cuda:1: 4,137,680,896 Bytes (3946.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 2 -t
+Initialize logger for experiment: gpt2_K2_M2_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,778,783,744 Bytes (6.31 GiB)
+Total Memory: 7,855,931,392 Bytes (7.32 GiB)
+Average Forward Time: 0.068 sec
+Average Backward Time: 0.043 sec
+Throughput: 578.138 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,768,582,144 Bytes (3594.00 MiB)
+cuda:1: 4,087,349,248 Bytes (3898.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 2 -c
+Initialize logger for experiment: gpt2_K2_M2_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 4,901,832,704 Bytes (4.57 GiB)
+Total Memory: 5,978,980,352 Bytes (5.57 GiB)
+Average Forward Time: 0.062 sec
+Average Backward Time: 0.089 sec
+Throughput: 421.431 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,669,674,496 Bytes (2546.00 MiB)
+cuda:1: 3,309,305,856 Bytes (3156.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 2 -c -t
+Initialize logger for experiment: gpt2_K2_M2_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,920,365,568 Bytes (3.65 GiB)
+Total Memory: 4,997,513,216 Bytes (4.65 GiB)
+Average Forward Time: 0.071 sec
+Average Backward Time: 0.045 sec
+Throughput: 552.703 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,296,381,440 Bytes (2190.00 MiB)
+cuda:1: 2,701,131,776 Bytes (2576.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 4
+Initialize logger for experiment: gpt2_K2_M4_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,617,303,040 Bytes (6.16 GiB)
+Total Memory: 7,694,450,688 Bytes (7.17 GiB)
+Average Forward Time: 0.088 sec
+Average Backward Time: 0.138 sec
+Throughput: 282.981 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,659,530,240 Bytes (3490.00 MiB)
+cuda:1: 4,034,920,448 Bytes (3848.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 4 -t
+Initialize logger for experiment: gpt2_K2_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,590,040,064 Bytes (6.14 GiB)
+Total Memory: 7,667,187,712 Bytes (7.14 GiB)
+Average Forward Time: 0.083 sec
+Average Backward Time: 0.139 sec
+Throughput: 288.904 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,632,267,264 Bytes (3464.00 MiB)
+cuda:1: 4,034,920,448 Bytes (3848.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 4 -c
+Initialize logger for experiment: gpt2_K2_M4_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,303,802,880 Bytes (3.08 GiB)
+Total Memory: 4,380,950,528 Bytes (4.08 GiB)
+Average Forward Time: 0.076 sec
+Average Backward Time: 0.238 sec
+Throughput: 204.238 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,679,818,752 Bytes (1602.00 MiB)
+cuda:1: 2,701,131,776 Bytes (2576.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 4 -c -t
+Initialize logger for experiment: gpt2_K2_M4_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,322,335,744 Bytes (2.16 GiB)
+Total Memory: 3,399,483,392 Bytes (3.17 GiB)
+Average Forward Time: 0.081 sec
+Average Backward Time: 0.181 sec
+Throughput: 244.201 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,493,172,224 Bytes (1424.00 MiB)
+cuda:1: 1,906,311,168 Bytes (1818.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 8
+Initialize logger for experiment: gpt2_K2_M8_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,900,418,560 Bytes (6.43 GiB)
+Total Memory: 7,977,566,208 Bytes (7.43 GiB)
+Average Forward Time: 0.124 sec
+Average Backward Time: 0.146 sec
+Throughput: 236.428 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,755,999,232 Bytes (3582.00 MiB)
+cuda:1: 4,221,566,976 Bytes (4026.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 8 -t
+Initialize logger for experiment: gpt2_K2_M8_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,896,224,256 Bytes (6.42 GiB)
+Total Memory: 7,973,371,904 Bytes (7.43 GiB)
+Average Forward Time: 0.112 sec
+Average Backward Time: 0.157 sec
+Throughput: 237.800 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,751,804,928 Bytes (3578.00 MiB)
+cuda:1: 4,221,566,976 Bytes (4026.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 8 -c
+Initialize logger for experiment: gpt2_K2_M8_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,582,382,592 Bytes (2.41 GiB)
+Total Memory: 3,659,530,240 Bytes (3.41 GiB)
+Average Forward Time: 0.105 sec
+Average Backward Time: 0.251 sec
+Throughput: 179.888 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,201,668,096 Bytes (1146.00 MiB)
+cuda:1: 2,457,862,144 Bytes (2344.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 8 -c -t
+Initialize logger for experiment: gpt2_K2_M8_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,774,979,072 Bytes (1.65 GiB)
+Total Memory: 2,852,126,720 Bytes (2.66 GiB)
+Average Forward Time: 0.104 sec
+Average Backward Time: 0.214 sec
+Throughput: 201.438 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,210,056,704 Bytes (1154.00 MiB)
+cuda:1: 1,642,070,016 Bytes (1566.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 16
+Initialize logger for experiment: gpt2_K2_M16_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,015,761,920 Bytes (6.53 GiB)
+Total Memory: 8,092,909,568 Bytes (7.54 GiB)
+Average Forward Time: 0.181 sec
+Average Backward Time: 0.166 sec
+Throughput: 184.722 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,795,845,120 Bytes (3620.00 MiB)
+cuda:1: 4,297,064,448 Bytes (4098.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 16 -t
+Initialize logger for experiment: gpt2_K2_M16_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,015,761,920 Bytes (6.53 GiB)
+Total Memory: 8,092,909,568 Bytes (7.54 GiB)
+Average Forward Time: 0.155 sec
+Average Backward Time: 0.163 sec
+Throughput: 201.388 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,795,845,120 Bytes (3620.00 MiB)
+cuda:1: 4,297,064,448 Bytes (4098.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 16 -c
+Initialize logger for experiment: gpt2_K2_M16_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,984,694,272 Bytes (1.85 GiB)
+Total Memory: 3,061,841,920 Bytes (2.85 GiB)
+Average Forward Time: 0.147 sec
+Average Backward Time: 0.249 sec
+Throughput: 161.486 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,289,748,480 Bytes (1230.00 MiB)
+cuda:1: 1,772,093,440 Bytes (1690.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 16 -c -t
+Initialize logger for experiment: gpt2_K2_M16_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,745,618,944 Bytes (1.63 GiB)
+Total Memory: 2,822,766,592 Bytes (2.63 GiB)
+Average Forward Time: 0.135 sec
+Average Backward Time: 0.231 sec
+Throughput: 174.588 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,224,736,768 Bytes (1168.00 MiB)
+cuda:1: 1,598,029,824 Bytes (1524.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 32
+Initialize logger for experiment: gpt2_K2_M32_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,577,798,656 Bytes (7.06 GiB)
+Total Memory: 8,654,946,304 Bytes (8.06 GiB)
+Average Forward Time: 0.364 sec
+Average Backward Time: 0.244 sec
+Throughput: 105.248 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,125,097,984 Bytes (3934.00 MiB)
+cuda:1: 4,529,848,320 Bytes (4320.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 32 -t
+Initialize logger for experiment: gpt2_K2_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,575,701,504 Bytes (7.06 GiB)
+Total Memory: 8,652,849,152 Bytes (8.06 GiB)
+Average Forward Time: 0.290 sec
+Average Backward Time: 0.227 sec
+Throughput: 123.940 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 4,123,000,832 Bytes (3932.00 MiB)
+cuda:1: 4,529,848,320 Bytes (4320.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 32 -c
+Initialize logger for experiment: gpt2_K2_M32_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,277,954,048 Bytes (1.19 GiB)
+Total Memory: 2,355,101,696 Bytes (2.19 GiB)
+Average Forward Time: 0.260 sec
+Average Backward Time: 0.315 sec
+Throughput: 111.362 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,031,798,784 Bytes (984.00 MiB)
+cuda:1: 1,323,302,912 Bytes (1262.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 32 -c -t
+Initialize logger for experiment: gpt2_K2_M32_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,206,650,880 Bytes (1.12 GiB)
+Total Memory: 2,283,798,528 Bytes (2.13 GiB)
+Average Forward Time: 0.223 sec
+Average Backward Time: 0.409 sec
+Throughput: 101.259 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 975,175,680 Bytes (930.00 MiB)
+cuda:1: 1,308,622,848 Bytes (1248.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 64
+Initialize logger for experiment: gpt2_K2_M64_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,713,772,032 Bytes (6.25 GiB)
+Total Memory: 7,790,919,680 Bytes (7.26 GiB)
+Average Forward Time: 0.578 sec
+Average Backward Time: 0.442 sec
+Throughput: 62.728 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,653,238,784 Bytes (3484.00 MiB)
+cuda:1: 4,137,680,896 Bytes (3946.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 64 -t
+Initialize logger for experiment: gpt2_K2_M64_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,713,772,032 Bytes (6.25 GiB)
+Total Memory: 7,790,919,680 Bytes (7.26 GiB)
+Average Forward Time: 0.481 sec
+Average Backward Time: 0.430 sec
+Throughput: 70.289 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 3,653,238,784 Bytes (3484.00 MiB)
+cuda:1: 4,137,680,896 Bytes (3946.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 64 -c
+Initialize logger for experiment: gpt2_K2_M64_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 211,812,352 Bytes (0.20 GiB)
+cuda:1: 211,812,352 Bytes (0.20 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,009,518,592 Bytes (0.94 GiB)
+Total Memory: 2,086,666,240 Bytes (1.94 GiB)
+Average Forward Time: 0.436 sec
+Average Backward Time: 0.562 sec
+Throughput: 64.172 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 962,592,768 Bytes (918.00 MiB)
+cuda:1: 1,124,073,472 Bytes (1072.00 MiB)
+Running: python benchmarks/memory_expr.py -k 2 -m 64 -c -t
+Initialize logger for experiment: gpt2_K2_M64_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,133,250,560 Bytes (1.06 GiB)
+Total Memory: 2,210,398,208 Bytes (2.06 GiB)
+Average Forward Time: 0.385 sec
+Average Backward Time: 0.792 sec
+Throughput: 54.373 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 929,038,336 Bytes (886.00 MiB)
+cuda:1: 1,281,359,872 Bytes (1222.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 1
+Initialize logger for experiment: gpt2_K4_M1_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,867,205,632 Bytes (7.33 GiB)
+Total Memory: 8,944,353,280 Bytes (8.33 GiB)
+Average Forward Time: 0.067 sec
+Average Backward Time: 0.042 sec
+Throughput: 584.398 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,197,815,296 Bytes (2096.00 MiB)
+cuda:1: 2,145,386,496 Bytes (2046.00 MiB)
+cuda:2: 2,145,386,496 Bytes (2046.00 MiB)
+cuda:3: 2,455,764,992 Bytes (2342.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 1 -t
+Initialize logger for experiment: gpt2_K4_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,816,873,984 Bytes (7.28 GiB)
+Total Memory: 8,894,021,632 Bytes (8.28 GiB)
+Average Forward Time: 0.072 sec
+Average Backward Time: 0.041 sec
+Throughput: 566.375 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,197,815,296 Bytes (2096.00 MiB)
+cuda:1: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:2: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:3: 2,455,764,992 Bytes (2342.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 1 -c
+Initialize logger for experiment: gpt2_K4_M1_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,720,404,992 Bytes (7.19 GiB)
+Total Memory: 8,797,552,640 Bytes (8.19 GiB)
+Average Forward Time: 0.065 sec
+Average Backward Time: 0.053 sec
+Throughput: 542.525 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,097,152,000 Bytes (2000.00 MiB)
+cuda:1: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:2: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:3: 2,459,959,296 Bytes (2346.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 1 -c -t
+Initialize logger for experiment: gpt2_K4_M1_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 1
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,816,873,984 Bytes (7.28 GiB)
+Total Memory: 8,894,021,632 Bytes (8.28 GiB)
+Average Forward Time: 0.075 sec
+Average Backward Time: 0.041 sec
+Throughput: 554.649 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,197,815,296 Bytes (2096.00 MiB)
+cuda:1: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:2: 2,120,220,672 Bytes (2022.00 MiB)
+cuda:3: 2,455,764,992 Bytes (2342.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 2
+Initialize logger for experiment: gpt2_K4_M2_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,294,683,136 Bytes (6.79 GiB)
+Total Memory: 8,371,830,784 Bytes (7.80 GiB)
+Average Forward Time: 0.078 sec
+Average Backward Time: 0.042 sec
+Throughput: 534.552 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,025,848,832 Bytes (1932.00 MiB)
+cuda:1: 2,000,683,008 Bytes (1908.00 MiB)
+cuda:2: 2,000,683,008 Bytes (1908.00 MiB)
+cuda:3: 2,344,615,936 Bytes (2236.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 2 -t
+Initialize logger for experiment: gpt2_K4_M2_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 2
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,319,848,960 Bytes (6.82 GiB)
+Total Memory: 8,396,996,608 Bytes (7.82 GiB)
+Average Forward Time: 0.076 sec
+Average Backward Time: 0.043 sec
+Throughput: 538.361 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,017,460,224 Bytes (1924.00 MiB)
+cuda:1: 2,017,460,224 Bytes (1924.00 MiB)
+cuda:2: 2,017,460,224 Bytes (1924.00 MiB)
+cuda:3: 2,344,615,936 Bytes (2236.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 2 -c
+Initialize logger for experiment: gpt2_K4_M2_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 5,541,464,064 Bytes (5.16 GiB)
+Total Memory: 6,618,611,712 Bytes (6.16 GiB)
+Average Forward Time: 0.072 sec
+Average Backward Time: 0.065 sec
+Throughput: 467.237 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,522,532,352 Bytes (1452.00 MiB)
+cuda:1: 1,499,463,680 Bytes (1430.00 MiB)
+cuda:2: 1,509,949,440 Bytes (1440.00 MiB)
+cuda:3: 2,086,666,240 Bytes (1990.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 2 -c -t
+Initialize logger for experiment: gpt2_K4_M2_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 2
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 4,509,665,280 Bytes (4.20 GiB)
+Total Memory: 5,586,812,928 Bytes (5.20 GiB)
+Average Forward Time: 0.080 sec
+Average Backward Time: 0.048 sec
+Throughput: 502.212 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,348,468,736 Bytes (1286.00 MiB)
+cuda:1: 1,300,234,240 Bytes (1240.00 MiB)
+cuda:2: 1,335,885,824 Bytes (1274.00 MiB)
+cuda:3: 1,602,224,128 Bytes (1528.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 4
+Initialize logger for experiment: gpt2_K4_M4_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,063,996,416 Bytes (6.58 GiB)
+Total Memory: 8,141,144,064 Bytes (7.58 GiB)
+Average Forward Time: 0.105 sec
+Average Backward Time: 0.046 sec
+Throughput: 423.880 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,927,282,688 Bytes (1838.00 MiB)
+cuda:1: 1,862,270,976 Bytes (1776.00 MiB)
+cuda:2: 1,912,602,624 Bytes (1824.00 MiB)
+cuda:3: 2,438,987,776 Bytes (2326.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 4 -t
+Initialize logger for experiment: gpt2_K4_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,108,036,608 Bytes (6.62 GiB)
+Total Memory: 8,185,184,256 Bytes (7.62 GiB)
+Average Forward Time: 0.091 sec
+Average Backward Time: 0.039 sec
+Throughput: 490.552 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,908,408,320 Bytes (1820.00 MiB)
+cuda:1: 1,918,894,080 Bytes (1830.00 MiB)
+cuda:2: 1,918,894,080 Bytes (1830.00 MiB)
+cuda:3: 2,438,987,776 Bytes (2326.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 4 -c
+Initialize logger for experiment: gpt2_K4_M4_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 3,448,506,368 Bytes (3.21 GiB)
+Total Memory: 4,525,654,016 Bytes (4.21 GiB)
+Average Forward Time: 0.087 sec
+Average Backward Time: 0.069 sec
+Throughput: 409.569 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,071,644,672 Bytes (1022.00 MiB)
+cuda:1: 922,746,880 Bytes (880.00 MiB)
+cuda:2: 973,078,528 Bytes (928.00 MiB)
+cuda:3: 1,558,183,936 Bytes (1486.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 4 -c -t
+Initialize logger for experiment: gpt2_K4_M4_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 4
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,890,663,936 Bytes (2.69 GiB)
+Total Memory: 3,967,811,584 Bytes (3.70 GiB)
+Average Forward Time: 0.093 sec
+Average Backward Time: 0.061 sec
+Throughput: 415.472 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 874,512,384 Bytes (834.00 MiB)
+cuda:1: 884,998,144 Bytes (844.00 MiB)
+cuda:2: 859,832,320 Bytes (820.00 MiB)
+cuda:3: 1,348,468,736 Bytes (1286.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 8
+Initialize logger for experiment: gpt2_K4_M8_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,338,723,328 Bytes (6.83 GiB)
+Total Memory: 8,415,870,976 Bytes (7.84 GiB)
+Average Forward Time: 0.143 sec
+Average Backward Time: 0.071 sec
+Throughput: 299.517 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,027,945,984 Bytes (1934.00 MiB)
+cuda:1: 1,958,739,968 Bytes (1868.00 MiB)
+cuda:2: 1,958,739,968 Bytes (1868.00 MiB)
+cuda:3: 2,470,445,056 Bytes (2356.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 8 -t
+Initialize logger for experiment: gpt2_K4_M8_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 8
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,305,168,896 Bytes (6.80 GiB)
+Total Memory: 8,382,316,544 Bytes (7.81 GiB)
+Average Forward Time: 0.129 sec
+Average Backward Time: 0.066 sec
+Throughput: 328.839 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,002,780,160 Bytes (1910.00 MiB)
+cuda:1: 1,954,545,664 Bytes (1864.00 MiB)
+cuda:2: 1,954,545,664 Bytes (1864.00 MiB)
+cuda:3: 2,470,445,056 Bytes (2356.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 8 -c
+Initialize logger for experiment: gpt2_K4_M8_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,553,022,464 Bytes (2.38 GiB)
+Total Memory: 3,630,170,112 Bytes (3.38 GiB)
+Average Forward Time: 0.114 sec
+Average Backward Time: 0.111 sec
+Throughput: 283.733 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 752,877,568 Bytes (718.00 MiB)
+cuda:1: 759,169,024 Bytes (724.00 MiB)
+cuda:2: 822,083,584 Bytes (784.00 MiB)
+cuda:3: 1,296,039,936 Bytes (1236.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 8 -c -t
+Initialize logger for experiment: gpt2_K4_M8_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 8
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,368,473,088 Bytes (2.21 GiB)
+Total Memory: 3,445,620,736 Bytes (3.21 GiB)
+Average Forward Time: 0.122 sec
+Average Backward Time: 0.094 sec
+Throughput: 295.447 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 746,586,112 Bytes (712.00 MiB)
+cuda:1: 715,128,832 Bytes (682.00 MiB)
+cuda:2: 715,128,832 Bytes (682.00 MiB)
+cuda:3: 1,268,776,960 Bytes (1210.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 16
+Initialize logger for experiment: gpt2_K4_M16_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,814,776,832 Bytes (7.28 GiB)
+Total Memory: 8,891,924,480 Bytes (8.28 GiB)
+Average Forward Time: 0.205 sec
+Average Backward Time: 0.102 sec
+Throughput: 207.895 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,109,734,912 Bytes (2012.00 MiB)
+cuda:1: 2,044,723,200 Bytes (1950.00 MiB)
+cuda:2: 2,044,723,200 Bytes (1950.00 MiB)
+cuda:3: 2,692,743,168 Bytes (2568.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 16 -t
+Initialize logger for experiment: gpt2_K4_M16_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 16
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,716,210,688 Bytes (7.19 GiB)
+Total Memory: 8,793,358,336 Bytes (8.19 GiB)
+Average Forward Time: 0.178 sec
+Average Backward Time: 0.097 sec
+Throughput: 231.909 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,109,734,912 Bytes (2012.00 MiB)
+cuda:1: 2,044,723,200 Bytes (1950.00 MiB)
+cuda:2: 2,044,723,200 Bytes (1950.00 MiB)
+cuda:3: 2,594,177,024 Bytes (2474.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 16 -c
+Initialize logger for experiment: gpt2_K4_M16_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,683,045,888 Bytes (2.50 GiB)
+Total Memory: 3,760,193,536 Bytes (3.50 GiB)
+Average Forward Time: 0.183 sec
+Average Backward Time: 0.163 sec
+Throughput: 184.854 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 866,123,776 Bytes (826.00 MiB)
+cuda:1: 822,083,584 Bytes (784.00 MiB)
+cuda:2: 845,152,256 Bytes (806.00 MiB)
+cuda:3: 1,226,833,920 Bytes (1170.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 16 -c -t
+Initialize logger for experiment: gpt2_K4_M16_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 16
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 2,672,560,128 Bytes (2.49 GiB)
+Total Memory: 3,749,707,776 Bytes (3.49 GiB)
+Average Forward Time: 0.187 sec
+Average Backward Time: 0.165 sec
+Throughput: 181.801 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 845,152,256 Bytes (806.00 MiB)
+cuda:1: 780,140,544 Bytes (744.00 MiB)
+cuda:2: 780,140,544 Bytes (744.00 MiB)
+cuda:3: 1,344,274,432 Bytes (1282.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 32
+Initialize logger for experiment: gpt2_K4_M32_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,821,068,288 Bytes (7.28 GiB)
+Total Memory: 8,898,215,936 Bytes (8.29 GiB)
+Average Forward Time: 0.403 sec
+Average Backward Time: 0.196 sec
+Throughput: 106.820 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,141,192,192 Bytes (2042.00 MiB)
+cuda:1: 2,063,597,568 Bytes (1968.00 MiB)
+cuda:2: 2,063,597,568 Bytes (1968.00 MiB)
+cuda:3: 2,629,828,608 Bytes (2508.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 32 -t
+Initialize logger for experiment: gpt2_K4_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,814,776,832 Bytes (7.28 GiB)
+Total Memory: 8,891,924,480 Bytes (8.28 GiB)
+Average Forward Time: 0.346 sec
+Average Backward Time: 0.189 sec
+Throughput: 119.540 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 2,139,095,040 Bytes (2040.00 MiB)
+cuda:1: 2,061,500,416 Bytes (1966.00 MiB)
+cuda:2: 2,061,500,416 Bytes (1966.00 MiB)
+cuda:3: 2,629,828,608 Bytes (2508.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 32 -c
+Initialize logger for experiment: gpt2_K4_M32_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,630,275,584 Bytes (1.52 GiB)
+Total Memory: 2,707,423,232 Bytes (2.52 GiB)
+Average Forward Time: 0.293 sec
+Average Backward Time: 0.315 sec
+Throughput: 105.240 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 587,202,560 Bytes (560.00 MiB)
+cuda:1: 574,619,648 Bytes (548.00 MiB)
+cuda:2: 574,619,648 Bytes (548.00 MiB)
+cuda:3: 970,981,376 Bytes (926.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 32 -c -t
+Initialize logger for experiment: gpt2_K4_M32_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 32
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,552,680,960 Bytes (1.45 GiB)
+Total Memory: 2,629,828,608 Bytes (2.45 GiB)
+Average Forward Time: 0.318 sec
+Average Backward Time: 0.317 sec
+Throughput: 100.799 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 576,716,800 Bytes (550.00 MiB)
+cuda:1: 509,607,936 Bytes (486.00 MiB)
+cuda:2: 509,607,936 Bytes (486.00 MiB)
+cuda:3: 1,033,895,936 Bytes (986.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 64
+Initialize logger for experiment: gpt2_K4_M64_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 7,053,510,656 Bytes (6.57 GiB)
+Total Memory: 8,130,658,304 Bytes (7.57 GiB)
+Average Forward Time: 0.627 sec
+Average Backward Time: 0.356 sec
+Throughput: 65.121 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,914,699,776 Bytes (1826.00 MiB)
+cuda:1: 1,866,465,280 Bytes (1780.00 MiB)
+cuda:2: 1,866,465,280 Bytes (1780.00 MiB)
+cuda:3: 2,483,027,968 Bytes (2368.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 64 -t
+Initialize logger for experiment: gpt2_K4_M64_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 64
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 6,908,807,168 Bytes (6.43 GiB)
+Total Memory: 7,985,954,816 Bytes (7.44 GiB)
+Average Forward Time: 0.566 sec
+Average Backward Time: 0.350 sec
+Throughput: 69.832 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,914,699,776 Bytes (1826.00 MiB)
+cuda:1: 1,843,396,608 Bytes (1758.00 MiB)
+cuda:2: 1,843,396,608 Bytes (1758.00 MiB)
+cuda:3: 2,384,461,824 Bytes (2274.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 64 -c
+Initialize logger for experiment: gpt2_K4_M64_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 106,954,752 Bytes (0.10 GiB)
+cuda:1: 106,954,752 Bytes (0.10 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,521,223,680 Bytes (1.42 GiB)
+Total Memory: 2,598,371,328 Bytes (2.42 GiB)
+Average Forward Time: 0.536 sec
+Average Backward Time: 0.599 sec
+Throughput: 56.372 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 568,328,192 Bytes (542.00 MiB)
+cuda:1: 551,550,976 Bytes (526.00 MiB)
+cuda:2: 551,550,976 Bytes (526.00 MiB)
+cuda:3: 926,941,184 Bytes (884.00 MiB)
+Running: python benchmarks/memory_expr.py -k 4 -m 64 -c -t
+Initialize logger for experiment: gpt2_K4_M64_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 64
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: False
+batch_size: 64
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Running GPT-2 expr...
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 89,762,304
+Total Model Parameter Memory: 1,077,147,648 Bytes (1.00 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 1,458,309,120 Bytes (1.36 GiB)
+Total Memory: 2,535,456,768 Bytes (2.36 GiB)
+Average Forward Time: 0.578 sec
+Average Backward Time: 0.607 sec
+Throughput: 53.994 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 541,065,216 Bytes (516.00 MiB)
+cuda:1: 497,025,024 Bytes (474.00 MiB)
+cuda:2: 497,025,024 Bytes (474.00 MiB)
+cuda:3: 1,000,341,504 Bytes (954.00 MiB)

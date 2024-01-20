@@ -1,0 +1,22 @@
+Using self-implemented Gpipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 23,068,672 Bytes (0.02 GiB)
+cuda:1: 476,053,504 Bytes (0.44 GiB)
+n2m32, 2-2 epochs
+batch size: 1500
+torchgpipe: 0.0.7, python: 3.10.13, torch: 2.1.2+cu121, cudnn: 8902, cuda: 12.1, gpu: Tesla V100-SXM2-32GB
+--------------------------------------------------------------------------------
+                                                                                00:00:15 | 1/2 epoch (14%) | 94.837 samples/sec (estimated)                                                                                00:00:31 | 1/2 epoch (28%) | 95.817 samples/sec (estimated)                                                                                00:00:46 | 1/2 epoch (42%) | 96.348 samples/sec (estimated)                                                                                00:01:02 | 1/2 epoch (57%) | 96.524 samples/sec (estimated)                                                                                00:01:17 | 1/2 epoch (71%) | 96.679 samples/sec (estimated)                                                                                00:01:33 | 1/2 epoch (85%) | 96.772 samples/sec (estimated)                                                                                00:01:44 | 1/2 epoch (100%) | 95.956 samples/sec (estimated)                                                                                00:01:44 | 1/2 epoch | 95.825 samples/sec, 104.357 sec/epoch
+                                                                                00:01:59 | 2/2 epoch (14%) | 98.856 samples/sec (estimated)                                                                                00:02:15 | 2/2 epoch (28%) | 97.843 samples/sec (estimated)                                                                                00:02:30 | 2/2 epoch (42%) | 97.580 samples/sec (estimated)Using self-implemented Gpipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 2,097,152 Bytes (0.00 GiB)
+cuda:1: 20,971,520 Bytes (0.02 GiB)
+cuda:2: 106,954,752 Bytes (0.10 GiB)
+cuda:3: 387,973,120 Bytes (0.36 GiB)
+n4m4, 2-2 epochs
+batch size: 600
+torchgpipe: 0.0.7, python: 3.10.13, torch: 2.1.2+cu121, cudnn: 8902, cuda: 12.1, gpu: Tesla V100-SXM2-32GB
+--------------------------------------------------------------------------------
+                                                                                00:00:06 | 1/2 epoch (5%) | 99.330 samples/sec (estimated)

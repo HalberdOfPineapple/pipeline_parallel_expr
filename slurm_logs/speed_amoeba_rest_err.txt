@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/benchmarks/amoebanetd-speed/main.py", line 329, in <module>
+    cli()
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/benchmarks/amoebanetd-speed/main.py", line 309, in cli
+    throughput, elapsed_time = run_epoch(epoch)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/benchmarks/amoebanetd-speed/main.py", line 280, in run_epoch
+    output = model(input)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 199, in forward
+    micro_batch = ckpt.checkpoint()
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/checkpointing.py", line 158, in checkpoint
+    output = CheckpointV2.apply(
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/autograd/function.py", line 539, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/checkpointing.py", line 186, in forward
+    output = func(tensors[0] if input_atomic else tensors)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/container.py", line 215, in forward
+    input = module(input)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/benchmarks/amoebanetd-speed/amoebanet/__init__.py", line 115, in forward
+    s2 = self.reduce2(s2)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/benchmarks/amoebanetd-speed/amoebanet/operations.py", line 38, in forward
+    x = torch.cat([self.conv1(x), self.conv2(self.pad(x[:, :, 1:, 1:]))], dim=1)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/ibex/user/liw0d/miniconda3/envs/torch_ddp/lib/python3.10/site-packages/torch/nn/modules/padding.py", line 205, in forward
+    return F.pad(input, self.padding, 'constant', self.value)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 144.00 MiB. GPU 1 has a total capacty of 31.74 GiB of which 85.38 MiB is free. Including non-PyTorch memory, this process has 31.65 GiB memory in use. Of the allocated memory 27.36 GiB is allocated by PyTorch, and 3.88 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+slurmstepd: error: *** JOB 31508104 ON gpu210-10 CANCELLED AT 2024-01-15T15:25:17 DUE TO TIME LIMIT ***

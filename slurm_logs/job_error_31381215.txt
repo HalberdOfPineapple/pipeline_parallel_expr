@@ -1,0 +1,470 @@
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 78, in init_expr
+    model = SelfGPipe(
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/MyGPipe/GPipe.py", line 114, in __init__
+    raise ValueError('Module and sum of partition plan have different length')
+ValueError: Module and sum of partition plan have different length
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 253, in __init__
+    self.partitions, self.balance, self.devices = split_module(module, balance, devices)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 95, in split_module
+    raise BalanceError('module and sum of balance have different length '
+torchgpipe.gpipe.BalanceError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 253, in <module>
+    main(vars(config))
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 177, in main
+    run_resnet_expr(config)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 110, in run_resnet_expr
+    model, devices = init_expr(config, model, resnet100_partition_plans)
+  File "/ibex/user/liw0d/torch_related/pipeline_parallel_expr/benchmarks/memory_expr.py", line 76, in init_expr
+    model = GPipe(model, balance=parititon_plan, chunks=num_microbatches, checkpoint=checkpoint_strategy)
+  File "/ibex/user/liw0d/torch_related/torchgpipe/torchgpipe/gpipe.py", line 255, in __init__
+    raise ValueError(recommend_auto_balance(str(exc)))
+ValueError: module and sum of balance have different length (module: 56, sum of balance: 59)
+
+If your model is still under development, its optimal balance would change
+frequently. In this case, we highly recommend 'torchgpipe.balance' for naive
+automatic balancing:
+
+  from torchgpipe import GPipe
+  from torchgpipe.balance import balance_by_time
+
+  partitions = torch.cuda.device_count()
+  sample = torch.empty(...)
+  balance = balance_by_time(partitions, model, sample)
+
+  model = GPipe(model, balance, ...)
+

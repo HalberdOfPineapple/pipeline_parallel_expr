@@ -1,0 +1,555 @@
+Running: python benchmarks/speed_expr.py -k 1 -m 1
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M1_self
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 64
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.130
+Iter 1 time: 0.014
+Iter 2 time: 0.014
+Iter 3 time: 0.014
+Iter 4 time: 0.014
+Iter 5 time: 0.014
+Iter 6 time: 0.014
+Iter 7 time: 0.015
+Iter 8 time: 0.014
+Iter 9 time: 0.014
+Throughput: 2503.309 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 1 -m 1 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 64
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.085
+Iter 1 time: 0.014
+Iter 2 time: 0.014
+Iter 3 time: 0.014
+Iter 4 time: 0.014
+Iter 5 time: 0.014
+Iter 6 time: 0.014
+Iter 7 time: 0.014
+Iter 8 time: 0.014
+Iter 9 time: 0.015
+Throughput: 3041.375 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 1 -m 4
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M4_self
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 256
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.129
+Iter 1 time: 0.057
+Iter 2 time: 0.059
+Iter 3 time: 0.059
+Iter 4 time: 0.059
+Iter 5 time: 0.059
+Iter 6 time: 0.059
+Iter 7 time: 0.059
+Iter 8 time: 0.059
+Iter 9 time: 0.059
+Throughput: 3885.158 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 1 -m 4 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 256
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.238
+Iter 1 time: 0.062
+Iter 2 time: 0.066
+Iter 3 time: 0.065
+Iter 4 time: 0.066
+Iter 5 time: 0.064
+Iter 6 time: 0.063
+Iter 7 time: 0.063
+Iter 8 time: 0.065
+Iter 9 time: 0.065
+Throughput: 3126.825 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 1 -m 32
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M32_self
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 2048
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.607
+Iter 1 time: 0.542
+Iter 2 time: 0.615
+Iter 3 time: 0.545
+Iter 4 time: 0.543
+Iter 5 time: 0.543
+Iter 6 time: 0.541
+Iter 7 time: 0.545
+Iter 8 time: 0.543
+Iter 9 time: 0.547
+Throughput: 3675.866 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 1 -m 32 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K1_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 2048
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.785
+Iter 1 time: 0.622
+Iter 2 time: 0.615
+Iter 3 time: 0.621
+Iter 4 time: 0.620
+Iter 5 time: 0.618
+Iter 6 time: 0.620
+Iter 7 time: 0.617
+Iter 8 time: 0.616
+Iter 9 time: 0.617
+Throughput: 3224.917 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 1
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M1_self
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 128
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.122
+Iter 1 time: 0.015
+Iter 2 time: 0.015
+Iter 3 time: 0.016
+Iter 4 time: 0.015
+Iter 5 time: 0.015
+Iter 6 time: 0.017
+Iter 7 time: 0.016
+Iter 8 time: 0.015
+Iter 9 time: 0.017
+Throughput: 4878.284 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 1 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 128
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.106
+Iter 1 time: 0.015
+Iter 2 time: 0.015
+Iter 3 time: 0.015
+Iter 4 time: 0.015
+Iter 5 time: 0.015
+Iter 6 time: 0.015
+Iter 7 time: 0.015
+Iter 8 time: 0.015
+Iter 9 time: 0.015
+Throughput: 5327.069 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 4
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M4_self
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 512
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.180
+Iter 1 time: 0.051
+Iter 2 time: 0.048
+Iter 3 time: 0.048
+Iter 4 time: 0.046
+Iter 5 time: 0.046
+Iter 6 time: 0.046
+Iter 7 time: 0.046
+Iter 8 time: 0.046
+Iter 9 time: 0.046
+Throughput: 8493.291 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 4 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 512
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.159
+Iter 1 time: 0.047
+Iter 2 time: 0.046
+Iter 3 time: 0.046
+Iter 4 time: 0.046
+Iter 5 time: 0.046
+Iter 6 time: 0.046
+Iter 7 time: 0.046
+Iter 8 time: 0.046
+Iter 9 time: 0.048
+Throughput: 8899.941 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 32
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M32_self
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 4096
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.728
+Iter 1 time: 0.393
+Iter 2 time: 0.388
+Iter 3 time: 0.397
+Iter 4 time: 0.397
+Iter 5 time: 0.401
+Iter 6 time: 0.392
+Iter 7 time: 0.398
+Iter 8 time: 0.391
+Iter 9 time: 0.393
+Throughput: 9577.738 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 2 -m 32 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K2_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 4096
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.713
+Iter 1 time: 0.386
+Iter 2 time: 0.380
+Iter 3 time: 0.382
+Iter 4 time: 0.382
+Iter 5 time: 0.381
+Iter 6 time: 0.379
+Iter 7 time: 0.380
+Iter 8 time: 0.379
+Iter 9 time: 0.380
+Throughput: 9887.625 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 1
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M1_self
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 256
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.144
+Iter 1 time: 0.019
+Iter 2 time: 0.017
+Iter 3 time: 0.016
+Iter 4 time: 0.017
+Iter 5 time: 0.017
+Iter 6 time: 0.020
+Iter 7 time: 0.016
+Iter 8 time: 0.016
+Iter 9 time: 0.018
+Throughput: 8545.757 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 1 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M1_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 1
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 256
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.131
+Iter 1 time: 0.018
+Iter 2 time: 0.017
+Iter 3 time: 0.017
+Iter 4 time: 0.017
+Iter 5 time: 0.018
+Iter 6 time: 0.017
+Iter 7 time: 0.017
+Iter 8 time: 0.019
+Iter 9 time: 0.016
+Throughput: 8915.667 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 4
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M4_self
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 1024
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.218
+Iter 1 time: 0.052
+Iter 2 time: 0.046
+Iter 3 time: 0.048
+Iter 4 time: 0.047
+Iter 5 time: 0.046
+Iter 6 time: 0.046
+Iter 7 time: 0.046
+Iter 8 time: 0.047
+Iter 9 time: 0.046
+Throughput: 15930.545 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 4 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M4_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 4
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 1024
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.177
+Iter 1 time: 0.046
+Iter 2 time: 0.045
+Iter 3 time: 0.047
+Iter 4 time: 0.045
+Iter 5 time: 0.044
+Iter 6 time: 0.044
+Iter 7 time: 0.044
+Iter 8 time: 0.044
+Iter 9 time: 0.045
+Throughput: 17574.878 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 32
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M32_self
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: False
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 8192
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.711
+Iter 1 time: 0.413
+Iter 2 time: 0.406
+Iter 3 time: 0.410
+Iter 4 time: 0.416
+Iter 5 time: 0.410
+Iter 6 time: 0.247
+Throughput: 27191.680 samples/sec
+Profiling Completed.
+Running: python benchmarks/speed_expr.py -k 4 -m 32 -t
+Running ResNet expr...
+Initialize logger for experiment: speed_K4_M32_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_micro_batches: 32
+checkpoint_enabled: False
+use_torchgpipe: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+Number of batches: 10
+Batch size: 8192
+--------------------------------------------------------------------------------
+Profiling...
+Iter 0 time: 0.784
+Iter 1 time: 0.404
+Iter 2 time: 0.397
+Iter 3 time: 0.398
+Iter 4 time: 0.397
+Iter 5 time: 0.398
+Iter 6 time: 0.237
+Throughput: 27178.185 samples/sec
+Profiling Completed.

@@ -12,7 +12,6 @@ from torchvision import transforms
 
 from torchgpipe import GPipe as tGPipe
 from MyGPipe import GPipe as SelfGPipe
-from CleanParallel.parallel import GPipe as CleanGPipe
 
 curr_dir = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(curr_dir, 'data')
@@ -85,11 +84,6 @@ def pipeline_model(model: torch.nn.Module, gpipe_type:str=None):
     elif gpipe_type == 'torchgpipe':
         print("Using torchgpipe...")
         model = tGPipe(model, chunks=4, balance=[1, 1, 1],
-              devices=['cuda:0', 'cuda:1', 'cuda:2'] if torch.cuda.is_available() else ['cpu', 'cpu', 'cpu'],
-              checkpoint='except_last',)
-    elif gpipe_type == 'clean':
-        print("Using CleanParallel...")
-        model = CleanGPipe(model, chunks=4, balance=[1, 1, 1],
               devices=['cuda:0', 'cuda:1', 'cuda:2'] if torch.cuda.is_available() else ['cpu', 'cpu', 'cpu'],
               checkpoint='except_last',)
     else:

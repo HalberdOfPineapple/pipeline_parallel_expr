@@ -1,0 +1,1206 @@
+Running: python benchmarks/memory_expr.py -r -k 1 -m 6
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M6_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 458,907,784 Bytes (437.65 MiB)
+Total Memory: 1,086,324,736 Bytes (1036.00 MiB)
+Average Forward Time: 0.118 sec
+Average Backward Time: 0.089 sec
+Throughput: 619.713 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,086,324,736 Bytes (1036.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 6 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M6_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 458,907,784 Bytes (437.65 MiB)
+Total Memory: 1,086,324,736 Bytes (1036.00 MiB)
+Average Forward Time: 0.162 sec
+Average Backward Time: 0.090 sec
+Throughput: 508.692 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,086,324,736 Bytes (1036.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 6 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M6_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 383,410,312 Bytes (365.65 MiB)
+Total Memory: 1,010,827,264 Bytes (964.00 MiB)
+Average Forward Time: 0.103 sec
+Average Backward Time: 0.140 sec
+Throughput: 526.677 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,010,827,264 Bytes (964.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 6 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M6_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 341,467,272 Bytes (325.65 MiB)
+Total Memory: 968,884,224 Bytes (924.00 MiB)
+Average Forward Time: 0.140 sec
+Average Backward Time: 0.168 sec
+Throughput: 415.466 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 968,884,224 Bytes (924.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 20
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M20_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 521,822,344 Bytes (497.65 MiB)
+Total Memory: 1,149,239,296 Bytes (1096.00 MiB)
+Average Forward Time: 0.310 sec
+Average Backward Time: 0.234 sec
+Throughput: 235.203 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,149,239,296 Bytes (1096.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 20 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M20_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 500,850,824 Bytes (477.65 MiB)
+Total Memory: 1,128,267,776 Bytes (1076.00 MiB)
+Average Forward Time: 0.344 sec
+Average Backward Time: 0.229 sec
+Throughput: 223.412 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,128,267,776 Bytes (1076.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 20 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M20_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 314,204,296 Bytes (299.65 MiB)
+Total Memory: 941,621,248 Bytes (898.00 MiB)
+Average Forward Time: 0.259 sec
+Average Backward Time: 0.355 sec
+Throughput: 208.376 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 941,621,248 Bytes (898.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 20 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M20_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 320,495,752 Bytes (305.65 MiB)
+Total Memory: 947,912,704 Bytes (904.00 MiB)
+Average Forward Time: 0.295 sec
+Average Backward Time: 0.518 sec
+Throughput: 157.367 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 947,912,704 Bytes (904.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 48
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M48_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 498,753,672 Bytes (475.65 MiB)
+Total Memory: 1,126,170,624 Bytes (1074.00 MiB)
+Average Forward Time: 0.592 sec
+Average Backward Time: 0.518 sec
+Throughput: 115.298 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,126,170,624 Bytes (1074.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 48 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M48_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 498,753,672 Bytes (475.65 MiB)
+Total Memory: 1,126,170,624 Bytes (1074.00 MiB)
+Average Forward Time: 0.645 sec
+Average Backward Time: 0.513 sec
+Throughput: 110.504 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 1,126,170,624 Bytes (1074.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 48 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M48_check_self
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 251,658,240 Bytes (0.23 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 360,341,640 Bytes (343.65 MiB)
+Total Memory: 987,758,592 Bytes (942.00 MiB)
+Average Forward Time: 0.492 sec
+Average Backward Time: 0.726 sec
+Throughput: 105.106 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 987,758,592 Bytes (942.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 1 -m 48 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K1_M48_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 1
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 347,758,728 Bytes (331.65 MiB)
+Total Memory: 975,175,680 Bytes (930.00 MiB)
+Average Forward Time: 0.516 sec
+Average Backward Time: 1.101 sec
+Throughput: 79.178 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 975,175,680 Bytes (930.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 6
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M6_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 490,365,064 Bytes (467.65 MiB)
+Total Memory: 1,117,782,016 Bytes (1066.00 MiB)
+Average Forward Time: 0.131 sec
+Average Backward Time: 0.071 sec
+Throughput: 635.349 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 457,179,136 Bytes (436.00 MiB)
+cuda:1: 660,602,880 Bytes (630.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 6 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M6_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 490,365,064 Bytes (467.65 MiB)
+Total Memory: 1,117,782,016 Bytes (1066.00 MiB)
+Average Forward Time: 0.146 sec
+Average Backward Time: 0.068 sec
+Throughput: 597.358 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 457,179,136 Bytes (436.00 MiB)
+cuda:1: 660,602,880 Bytes (630.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 6 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M6_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 391,798,920 Bytes (373.65 MiB)
+Total Memory: 1,019,215,872 Bytes (972.00 MiB)
+Average Forward Time: 0.112 sec
+Average Backward Time: 0.120 sec
+Throughput: 552.585 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 362,807,296 Bytes (346.00 MiB)
+cuda:1: 656,408,576 Bytes (626.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 6 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M6_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 375,021,704 Bytes (357.65 MiB)
+Total Memory: 1,002,438,656 Bytes (956.00 MiB)
+Average Forward Time: 0.137 sec
+Average Backward Time: 0.130 sec
+Throughput: 479.581 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 362,807,296 Bytes (346.00 MiB)
+cuda:1: 639,631,360 Bytes (610.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 20
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M20_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 616,194,184 Bytes (587.65 MiB)
+Total Memory: 1,243,611,136 Bytes (1186.00 MiB)
+Average Forward Time: 0.327 sec
+Average Backward Time: 0.173 sec
+Throughput: 255.974 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 494,927,872 Bytes (472.00 MiB)
+cuda:1: 748,683,264 Bytes (714.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 20 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M20_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 595,222,664 Bytes (567.65 MiB)
+Total Memory: 1,222,639,616 Bytes (1166.00 MiB)
+Average Forward Time: 0.297 sec
+Average Backward Time: 0.169 sec
+Throughput: 274.746 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 494,927,872 Bytes (472.00 MiB)
+cuda:1: 727,711,744 Bytes (694.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 20 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M20_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 437,936,264 Bytes (417.65 MiB)
+Total Memory: 1,065,353,216 Bytes (1016.00 MiB)
+Average Forward Time: 0.284 sec
+Average Backward Time: 0.343 sec
+Throughput: 204.268 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 392,167,424 Bytes (374.00 MiB)
+cuda:1: 673,185,792 Bytes (642.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 20 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M20_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 423,256,200 Bytes (403.65 MiB)
+Total Memory: 1,050,673,152 Bytes (1002.00 MiB)
+Average Forward Time: 0.267 sec
+Average Backward Time: 0.384 sec
+Throughput: 196.791 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 383,778,816 Bytes (366.00 MiB)
+cuda:1: 666,894,336 Bytes (636.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 48
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M48_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 653,942,920 Bytes (623.65 MiB)
+Total Memory: 1,281,359,872 Bytes (1222.00 MiB)
+Average Forward Time: 0.617 sec
+Average Backward Time: 0.377 sec
+Throughput: 128.816 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 524,288,000 Bytes (500.00 MiB)
+cuda:1: 757,071,872 Bytes (722.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 48 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M48_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 632,971,400 Bytes (603.65 MiB)
+Total Memory: 1,260,388,352 Bytes (1202.00 MiB)
+Average Forward Time: 0.561 sec
+Average Backward Time: 0.371 sec
+Throughput: 137.429 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 524,288,000 Bytes (500.00 MiB)
+cuda:1: 736,100,352 Bytes (702.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 48 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M48_check_self
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 102,760,448 Bytes (0.10 GiB)
+cuda:1: 148,897,792 Bytes (0.14 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 488,267,912 Bytes (465.65 MiB)
+Total Memory: 1,115,684,864 Bytes (1064.00 MiB)
+Average Forward Time: 0.516 sec
+Average Backward Time: 0.664 sec
+Throughput: 108.456 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 413,138,944 Bytes (394.00 MiB)
+cuda:1: 702,545,920 Bytes (670.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 2 -m 48 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K2_M48_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 2
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 496,656,520 Bytes (473.65 MiB)
+Total Memory: 1,124,073,472 Bytes (1072.00 MiB)
+Average Forward Time: 0.483 sec
+Average Backward Time: 0.781 sec
+Throughput: 101.226 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 411,041,792 Bytes (392.00 MiB)
+cuda:1: 713,031,680 Bytes (680.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 6
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M6_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 561,668,232 Bytes (535.65 MiB)
+Total Memory: 1,189,085,184 Bytes (1134.00 MiB)
+Average Forward Time: 0.145 sec
+Average Backward Time: 0.059 sec
+Throughput: 628.351 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 155,189,248 Bytes (148.00 MiB)
+cuda:1: 230,686,720 Bytes (220.00 MiB)
+cuda:2: 350,224,384 Bytes (334.00 MiB)
+cuda:3: 452,984,832 Bytes (432.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 6 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M6_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 6
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 605,708,424 Bytes (577.65 MiB)
+Total Memory: 1,233,125,376 Bytes (1176.00 MiB)
+Average Forward Time: 0.163 sec
+Average Backward Time: 0.060 sec
+Throughput: 572.925 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 155,189,248 Bytes (148.00 MiB)
+cuda:1: 230,686,720 Bytes (220.00 MiB)
+cuda:2: 350,224,384 Bytes (334.00 MiB)
+cuda:3: 497,025,024 Bytes (474.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 6 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M6_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 490,365,064 Bytes (467.65 MiB)
+Total Memory: 1,117,782,016 Bytes (1066.00 MiB)
+Average Forward Time: 0.132 sec
+Average Backward Time: 0.123 sec
+Throughput: 501.756 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 83,886,080 Bytes (80.00 MiB)
+cuda:1: 218,103,808 Bytes (208.00 MiB)
+cuda:2: 318,767,104 Bytes (304.00 MiB)
+cuda:3: 497,025,024 Bytes (474.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 6 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M6_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 6
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 435,839,112 Bytes (415.65 MiB)
+Total Memory: 1,063,256,064 Bytes (1014.00 MiB)
+Average Forward Time: 0.156 sec
+Average Backward Time: 0.123 sec
+Throughput: 458.765 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 79,691,776 Bytes (76.00 MiB)
+cuda:1: 201,326,592 Bytes (192.00 MiB)
+cuda:2: 325,058,560 Bytes (310.00 MiB)
+cuda:3: 457,179,136 Bytes (436.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 20
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M20_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 710,566,024 Bytes (677.65 MiB)
+Total Memory: 1,337,982,976 Bytes (1276.00 MiB)
+Average Forward Time: 0.352 sec
+Average Backward Time: 0.129 sec
+Throughput: 266.443 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 176,160,768 Bytes (168.00 MiB)
+cuda:1: 257,949,696 Bytes (246.00 MiB)
+cuda:2: 364,904,448 Bytes (348.00 MiB)
+cuda:3: 538,968,064 Bytes (514.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 20 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M20_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 20
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 689,594,504 Bytes (657.65 MiB)
+Total Memory: 1,317,011,456 Bytes (1256.00 MiB)
+Average Forward Time: 0.308 sec
+Average Backward Time: 0.131 sec
+Throughput: 291.419 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 176,160,768 Bytes (168.00 MiB)
+cuda:1: 257,949,696 Bytes (246.00 MiB)
+cuda:2: 364,904,448 Bytes (348.00 MiB)
+cuda:3: 517,996,544 Bytes (494.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 20 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M20_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 574,251,144 Bytes (547.65 MiB)
+Total Memory: 1,201,668,096 Bytes (1146.00 MiB)
+Average Forward Time: 0.316 sec
+Average Backward Time: 0.346 sec
+Throughput: 193.395 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 109,051,904 Bytes (104.00 MiB)
+cuda:1: 230,686,720 Bytes (220.00 MiB)
+cuda:2: 354,418,688 Bytes (338.00 MiB)
+cuda:3: 507,510,784 Bytes (484.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 20 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M20_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 20
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 563,765,384 Bytes (537.65 MiB)
+Total Memory: 1,191,182,336 Bytes (1136.00 MiB)
+Average Forward Time: 0.293 sec
+Average Backward Time: 0.372 sec
+Throughput: 192.393 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 104,857,600 Bytes (100.00 MiB)
+cuda:1: 228,589,568 Bytes (218.00 MiB)
+cuda:2: 348,127,232 Bytes (332.00 MiB)
+cuda:3: 509,607,936 Bytes (486.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 48
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M48_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 817,520,776 Bytes (779.65 MiB)
+Total Memory: 1,444,937,728 Bytes (1378.00 MiB)
+Average Forward Time: 0.657 sec
+Average Backward Time: 0.280 sec
+Throughput: 136.698 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 203,423,744 Bytes (194.00 MiB)
+cuda:1: 293,601,280 Bytes (280.00 MiB)
+cuda:2: 394,264,576 Bytes (376.00 MiB)
+cuda:3: 553,648,128 Bytes (528.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 48 -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M48_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 48
+checkpoint_enabled: False
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 796,549,256 Bytes (759.65 MiB)
+Total Memory: 1,423,966,208 Bytes (1358.00 MiB)
+Average Forward Time: 0.564 sec
+Average Backward Time: 0.272 sec
+Throughput: 153.048 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 203,423,744 Bytes (194.00 MiB)
+cuda:1: 293,601,280 Bytes (280.00 MiB)
+cuda:2: 394,264,576 Bytes (376.00 MiB)
+cuda:3: 532,676,608 Bytes (508.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 48 -c
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M48_check_self
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: False
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with self-implemented GPipe...
+--------------------------------------------------------------------------------
+Splitting the module in MyGPipe...
+cuda:0: 12,582,912 Bytes (0.01 GiB)
+cuda:1: 50,331,648 Bytes (0.05 GiB)
+cuda:2: 85,983,232 Bytes (0.08 GiB)
+cuda:3: 106,954,752 Bytes (0.10 GiB)
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 677,011,592 Bytes (645.65 MiB)
+Total Memory: 1,304,428,544 Bytes (1244.00 MiB)
+Average Forward Time: 0.590 sec
+Average Backward Time: 0.707 sec
+Throughput: 98.753 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 134,217,728 Bytes (128.00 MiB)
+cuda:1: 264,241,152 Bytes (252.00 MiB)
+cuda:2: 383,778,816 Bytes (366.00 MiB)
+cuda:3: 522,190,848 Bytes (498.00 MiB)
+Running: python benchmarks/memory_expr.py -r -k 4 -m 48 -c -t
+Running ResNet expr...
+Initialize logger for experiment: mem_expr_K4_M48_check_torchgpipe
+================================================================================
+Configuration
+num_partitions: 4
+num_microbatches: 48
+checkpoint_enabled: True
+use_torchgpipe: True
+use_resnet: True
+================================================================================
+--------------------------------------------------------------------------------
+Pipelining model with torchgpipe...
+Files already downloaded and verified
+--------------------------------------------------------------------------------
+Profiling parameters...
+# of Model Parameters: 52,284,746
+Total Model Parameter Memory: 627,416,952 Bytes (0.58 GiB)
+--------------------------------------------------------------------------------
+Profiling...
+--------------------------------------------------------------------------------
+Peak Activation Memory: 641,360,008 Bytes (611.65 MiB)
+Total Memory: 1,268,776,960 Bytes (1210.00 MiB)
+Average Forward Time: 0.543 sec
+Average Backward Time: 0.727 sec
+Throughput: 100.793 samples/sec
+Profiling Completed.
+--------------------------------------------------------------------------------
+Max memory per device:
+cuda:0: 132,120,576 Bytes (126.00 MiB)
+cuda:1: 264,241,152 Bytes (252.00 MiB)
+cuda:2: 362,807,296 Bytes (346.00 MiB)
+cuda:3: 509,607,936 Bytes (486.00 MiB)

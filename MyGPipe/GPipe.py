@@ -103,19 +103,13 @@ class GPipe(torch.nn.Module):
 
         checkpoint_strategy = checkpoint_strategy if checkpoint_strategy else NEVER
         if checkpoint_strategy == ALWAYS:
-            self.checkpoint_layers = list(range(len(self.partitions)))
+            self.checkpoint_stop = self.num_micro_batches
         elif checkpoint_strategy == EXCEPT_LAST:
-            self.checkpoint_layers = list(range(len(self.partitions) - 1))
+            self.checkpoint_stop = self.num_micro_batches - 1
         elif checkpoint_strategy == NEVER:
-            self.checkpoint_layers = []
+            self.checkpoint_stop = 0
         else:
             raise ValueError(f'Unsupported checkpoint strategy: {checkpoint_strategy}')
-    
-        self.checkpoint_stop = {
-            'always': self.num_micro_batches,
-            'except_last': self.num_micro_batches,
-            'never': 0,
-        }[checkpoint_strategy]
     
     def init_streams(self):
         """Initialize streams for each partition"""
